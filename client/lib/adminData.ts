@@ -112,6 +112,20 @@ export interface AdminData {
     image: string;
     enabled: boolean;
   }>;
+  footer: {
+    logo: string;
+    description: string;
+    quickLinks: Array<{
+      text: string;
+      action: string;
+    }>;
+    socialMedia: Array<{
+      platform: string;
+      url: string;
+      icon: string;
+    }>;
+    copyright: string;
+  };
 }
 
 // Default data with current static content
