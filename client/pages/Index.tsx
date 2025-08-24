@@ -827,21 +827,15 @@ export default function Index() {
 
               {/* Enhanced Trust Indicators */}
               <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-6 text-sm text-snack-dark-blue/70">
-                <div className="flex items-center gap-2 bg-white/60 backdrop-blur-sm px-3 py-2 rounded-full">
-                  <CheckCircle className="w-4 h-4 text-logo-green" />
-                  <span className="hidden sm:inline font-medium">
-                    30+ Snack Varieties
-                  </span>
-                  <span className="sm:hidden font-medium">30+ Varieties</span>
-                </div>
-                <div className="flex items-center gap-2 bg-white/60 backdrop-blur-sm px-3 py-2 rounded-full">
-                  <CheckCircle className="w-4 h-4 text-logo-green" />
-                  <span className="font-medium">Fast Shipping</span>
-                </div>
-                <div className="flex items-center gap-2 bg-white/60 backdrop-blur-sm px-3 py-2 rounded-full">
-                  <CheckCircle className="w-4 h-4 text-logo-green" />
-                  <span className="font-medium">Gift Ready</span>
-                </div>
+                {hero.trustIndicators.map((indicator, index) => {
+                  const IconComponent = getIconComponent(indicator.icon);
+                  return (
+                    <div key={index} className="flex items-center gap-2 bg-white/60 backdrop-blur-sm px-3 py-2 rounded-full">
+                      <IconComponent className="w-4 h-4 text-logo-green" />
+                      <span className="font-medium">{indicator.text}</span>
+                    </div>
+                  );
+                })}
               </div>
             </div>
 
