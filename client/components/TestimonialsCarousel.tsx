@@ -21,20 +21,22 @@ export default function TestimonialsCarousel() {
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
+  // Auto-sliding testimonials - moved before early return
+  useEffect(() => {
+    if (!data?.testimonials) return;
+
+    const interval = setInterval(() => {
+      setCurrentTestimonial((prev) => (prev + 1) % data.testimonials.length);
+    }, 6000); // Increased to 6 seconds for better readability
+
+    return () => clearInterval(interval);
+  }, [data?.testimonials]);
+
   if (!data?.testimonials) {
     return null;
   }
 
   const testimonials = data.testimonials;
-
-  // Auto-sliding testimonials
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
-    }, 6000); // Increased to 6 seconds for better readability
-
-    return () => clearInterval(interval);
-  }, []);
 
   // Navigation functions
   const goToNext = () => {
