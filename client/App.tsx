@@ -139,6 +139,21 @@ const App = () => {
               path="/ultimate-snack-box-105-count"
               element={<ProductPage />}
             />
+
+            {/* Admin Routes */}
+            <Route path="/admin" element={<AdminLayout />}>
+              <Route index element={<AdminDashboard />} />
+              <Route path="hero" element={<HeroAdmin />} />
+              <Route path="carousel" element={<CarouselAdmin />} />
+              <Route path="features" element={<FeaturesAdmin />} />
+              <Route path="products" element={<ProductsAdmin />} />
+              <Route path="testimonials" element={<TestimonialsAdmin />} />
+              <Route path="tiktok" element={<TikTokAdmin />} />
+              <Route path="cta" element={<CTAAdmin />} />
+              <Route path="seo" element={<SEOAdmin />} />
+              <Route path="popups" element={<PopupsAdmin />} />
+            </Route>
+
             <Route path="/:slug" element={<ProductPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
