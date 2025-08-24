@@ -404,6 +404,39 @@ const defaultAdminData: AdminData = {
       enabled: false,
     },
   ],
+  footer: {
+    logo: "https://cdn.builder.io/api/v1/image/assets%2F79b7dfd5cb0f4ca0b96e836c27c6ef40%2Fcd932fcd18414ba798762d622c2b825c?format=webp&width=240&quality=90",
+    description: "Premium snack boxes perfect for gifts and special occasions.",
+    quickLinks: [
+      { text: "Home", action: "scrollToTop" },
+      { text: "Products", action: "scrollToProducts" },
+      { text: "Testimonials", action: "scrollToTestimonials" },
+      { text: "Why Choose Us", action: "scrollToFeatures" },
+    ],
+    socialMedia: [
+      {
+        platform: "TikTok",
+        url: "https://tiktok.com/@nut.cravings",
+        icon: "tiktok",
+      },
+      {
+        platform: "Instagram",
+        url: "#",
+        icon: "instagram",
+      },
+      {
+        platform: "Facebook",
+        url: "#",
+        icon: "facebook",
+      },
+      {
+        platform: "YouTube",
+        url: "#",
+        icon: "youtube",
+      },
+    ],
+    copyright: "© 2025 Gift A Snack. All rights reserved.",
+  },
 };
 
 // localStorage key
