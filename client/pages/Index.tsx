@@ -1476,52 +1476,29 @@ export default function Index() {
             {/* Quick Links */}
             <div className="text-center">
               <div className="flex flex-wrap justify-center gap-4">
-                <a
-                  href="#"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    window.scrollTo({ top: 0, behavior: "smooth" });
-                  }}
-                  className="text-gray-300 hover:text-logo-green transition-colors duration-300 text-sm font-medium cursor-pointer"
-                >
-                  Home
-                </a>
-                <a
-                  href="#products-section"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    document
-                      .getElementById("products-section")
-                      ?.scrollIntoView({ behavior: "smooth" });
-                  }}
-                  className="text-gray-300 hover:text-logo-green transition-colors duration-300 text-sm font-medium cursor-pointer"
-                >
-                  Products
-                </a>
-                <a
-                  href="#testimonials-section"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    document
-                      .getElementById("testimonials-section")
-                      ?.scrollIntoView({ behavior: "smooth" });
-                  }}
-                  className="text-gray-300 hover:text-logo-green transition-colors duration-300 text-sm font-medium cursor-pointer"
-                >
-                  Testimonials
-                </a>
-                <a
-                  href="#why-choose-section"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    document
-                      .getElementById("why-choose-section")
-                      ?.scrollIntoView({ behavior: "smooth" });
-                  }}
-                  className="text-gray-300 hover:text-logo-green transition-colors duration-300 text-sm font-medium cursor-pointer"
-                >
-                  Why Choose Us
-                </a>
+                {footer.quickLinks.map((link, index) => (
+                  <a
+                    key={index}
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      if (link.action === 'scrollToTop') {
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+                      } else if (link.action === 'scrollToProducts') {
+                        document.getElementById("products-section")?.scrollIntoView({ behavior: "smooth" });
+                      } else if (link.action === 'scrollToTestimonials') {
+                        document.getElementById("testimonials-section")?.scrollIntoView({ behavior: "smooth" });
+                      } else if (link.action === 'scrollToFeatures') {
+                        document.getElementById("why-choose-section")?.scrollIntoView({ behavior: "smooth" });
+                      } else if (link.action === 'scrollToTikTok') {
+                        document.querySelector(".tiktok-section")?.scrollIntoView({ behavior: "smooth" });
+                      }
+                    }}
+                    className="text-gray-300 hover:text-logo-green transition-colors duration-300 text-sm font-medium cursor-pointer"
+                  >
+                    {link.text}
+                  </a>
+                ))}
               </div>
             </div>
 
