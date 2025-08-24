@@ -745,7 +745,7 @@ export default function Index() {
               <div className="flex justify-center lg:justify-start mb-4 sm:mb-6">
                 <div className="bg-white/80 backdrop-blur-sm p-3 sm:p-5 rounded-2xl shadow-xl border border-gray-200/50 inline-block">
                   <img
-                    src="https://cdn.builder.io/api/v1/image/assets%2F79b7dfd5cb0f4ca0b96e836c27c6ef40%2Fcd932fcd18414ba798762d622c2b825c?format=webp&width=300&quality=90"
+                    src={hero.logo}
                     alt="Gift A Snack Premium Snack Box Company Logo - Quality Snack Boxes for Gifts"
                     className="h-16 sm:h-20 lg:h-28 w-auto"
                     loading="eager"
@@ -755,28 +755,32 @@ export default function Index() {
                 </div>
               </div>
 
-              <div className="inline-flex items-center gap-2 bg-gradient-to-r from-logo-green/15 to-green-400/15 backdrop-blur-sm text-logo-green px-4 py-2 rounded-full text-xs sm:text-sm font-semibold mb-4 sm:mb-6 border border-logo-green/20">
-                <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4" />
-                <span className="hidden sm:inline">
-                  Premium Quality Guaranteed
-                </span>
-                <span className="sm:hidden">Premium Quality</span>
-              </div>
+              {hero.badge.text && (
+                <div className="inline-flex items-center gap-2 bg-gradient-to-r from-logo-green/15 to-green-400/15 backdrop-blur-sm text-logo-green px-4 py-2 rounded-full text-xs sm:text-sm font-semibold mb-4 sm:mb-6 border border-logo-green/20">
+                  {(() => {
+                    const IconComponent = getIconComponent(hero.badge.icon);
+                    return <IconComponent className="w-3 h-3 sm:w-4 sm:h-4" />;
+                  })()}
+                  <span className="hidden sm:inline">
+                    {hero.badge.text}
+                  </span>
+                  <span className="sm:hidden">{hero.badge.text.split(' ').slice(0, 2).join(' ')}</span>
+                </div>
+              )}
 
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-heading-red mb-4 sm:mb-6 leading-tight tracking-tight">
-                <span className="block">Premium Snack Boxes</span>
+                <span className="block">{hero.title.line1}</span>
                 <span className="block text-snack-dark-blue">
-                  – Gift A Snack
+                  {hero.title.line2}
                 </span>
               </h1>
 
               <p className="text-base sm:text-lg text-snack-dark-blue/80 mb-6 sm:mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed">
                 <span className="hidden sm:inline">
-                  Premium assortment of delicious snacks, beautifully packaged.
-                  Perfect for gifts, office treats, and special occasions.
+                  {hero.description.desktop}
                 </span>
                 <span className="sm:hidden">
-                  Premium snack boxes perfect for gifts and special occasions.
+                  {hero.description.mobile}
                 </span>
               </p>
 
