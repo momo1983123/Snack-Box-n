@@ -20,6 +20,7 @@ import TikTokAdmin from "./pages/admin/TikTokAdmin";
 import CTAAdmin from "./pages/admin/CTAAdmin";
 import SEOAdmin from "./pages/admin/SEOAdmin";
 import PopupsAdmin from "./pages/admin/PopupsAdmin";
+import FooterAdmin from "./pages/admin/FooterAdmin";
 import { useEffect } from "react";
 
 const queryClient = new QueryClient();
