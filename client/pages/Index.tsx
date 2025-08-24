@@ -98,19 +98,11 @@ export default function Index() {
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
-  // Show loading state while data loads
-  if (loading || !adminData) {
-    return (
-      <div className="min-h-screen bg-blue-50 flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-logo-green mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading...</p>
-        </div>
-      </div>
-    );
-  }
-
-  const { hero, carousel, features, products, testimonials, tiktok, cta } = adminData;
+  // Shared state for DOM protection across all TikTok initialization functions
+  const domProtectionStateRef = useRef({
+    isActive: false,
+    restoreFunction: null as (() => void) | null,
+  });
 
   const scrollToProducts = () => {
     document
