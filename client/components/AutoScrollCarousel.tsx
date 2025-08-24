@@ -1,33 +1,14 @@
 import React from "react";
+import { useAdminData } from "@/hooks/useAdminData";
 
 const AutoScrollCarousel = () => {
-  const bannerImages = [
-    {
-      id: 1,
-      src: "https://cdn.builder.io/api/v1/image/assets%2F79b7dfd5cb0f4ca0b96e836c27c6ef40%2F2c3b085707884c2f88ed094decfffa88?format=webp&width=600&quality=90",
-      alt: "Gift A Snack Premium Snack Box Collection Featuring Chips Crackers Cookies and Candy Variety Packs",
-    },
-    {
-      id: 2,
-      src: "https://cdn.builder.io/api/v1/image/assets%2F79b7dfd5cb0f4ca0b96e836c27c6ef40%2Ffb86c1a2698e4415a1b414f0ae8c1f33?format=webp&width=600&quality=90",
-      alt: "Gift A Snack Variety Pack Assortment Perfect for Gifts and Care Packages with Quality Snacks",
-    },
-    {
-      id: 3,
-      src: "https://cdn.builder.io/api/v1/image/assets%2F79b7dfd5cb0f4ca0b96e836c27c6ef40%2F0fc267a65d674083b4be3bd27a90b563?format=webp&width=600&quality=90",
-      alt: "Gift A Snack Premium Care Package Collection with Diverse Snack Options for Every Occasion",
-    },
-    {
-      id: 4,
-      src: "https://cdn.builder.io/api/v1/image/assets%2F79b7dfd5cb0f4ca0b96e836c27c6ef40%2F5277a0906b534f7d80d910806e3426de?format=webp&width=600&quality=90",
-      alt: "Gift A Snack Quality Snack Box Collection with Chips Crackers and Sweet Treats for Gifting",
-    },
-    {
-      id: 5,
-      src: "https://cdn.builder.io/api/v1/image/assets%2F79b7dfd5cb0f4ca0b96e836c27c6ef40%2F97422d3d39ee42519a91e3fbb0835571?format=webp&width=600&quality=90",
-      alt: "Gift A Snack Premium Variety Pack with Assorted Snacks Perfect for Office Treats and Gifts",
-    },
-  ];
+  const { data } = useAdminData();
+
+  if (!data?.carousel) {
+    return null;
+  }
+
+  const { title, description, images } = data.carousel;
 
   // Duplicate the images for seamless loop
   const duplicatedImages = [...bannerImages, ...bannerImages];
