@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { useAdminData, useSEOData } from "@/hooks/useAdminData";
 import {
   X,
   Truck,
@@ -39,6 +40,26 @@ const calculatePricing = (salePrice: string) => {
     salePrice: salePrice,
     regularPrice: `$${regularPriceRounded.toFixed(2)}`,
   };
+};
+
+// Helper function to get icon component by name
+const getIconComponent = (iconName: string) => {
+  const icons: { [key: string]: any } = {
+    CheckCircle,
+    Package,
+    Gift,
+    Users,
+    Sparkles,
+    Zap,
+    ShoppingCart,
+    Truck,
+    Star,
+    ExternalLink,
+    Play,
+    Maximize2,
+    Eye,
+  };
+  return icons[iconName] || CheckCircle;
 };
 
 // Star Rating Component
