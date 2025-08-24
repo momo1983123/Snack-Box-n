@@ -11,7 +11,7 @@ const AutoScrollCarousel = () => {
   const { title, description, images } = data.carousel;
 
   // Duplicate the images for seamless loop
-  const duplicatedImages = [...bannerImages, ...bannerImages];
+  const duplicatedImages = [...images, ...images];
 
   return (
     <section className="py-16 px-4 bg-gradient-to-b from-white via-gray-50 to-white overflow-hidden relative">
@@ -28,11 +28,10 @@ const AutoScrollCarousel = () => {
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-heading-red mb-4 tracking-tight">
-            Our Snack Box Variety Collection
+            {title}
           </h2>
           <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            Discover the perfect snack experience for every occasion and
-            celebration
+            {description}
           </p>
 
           {/* Decorative divider */}
