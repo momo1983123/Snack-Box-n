@@ -1,50 +1,6 @@
 import { useState, useEffect } from "react";
 import { Star, ChevronLeft, ChevronRight } from "lucide-react";
-
-const testimonials = [
-  {
-    text: "The best gift I've ever given my friend! Elegant packaging and the products are fresh and super tasty.",
-    name: "Sarah M.",
-    rating: 5,
-    avatar:
-      "https://images.unsplash.com/photo-1494790108755-2616b612b830?w=150&h=150&fit=crop&crop=face&auto=format&q=80",
-  },
-  {
-    text: "I bought the box for my office and everyone loved the wide variety of snacks.",
-    name: "Mike R.",
-    rating: 5,
-    avatar:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face&auto=format&q=80",
-  },
-  {
-    text: "Fast delivery, excellent quality, and I recommend it to everyone.",
-    name: "Jessica L.",
-    rating: 5,
-    avatar:
-      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face&auto=format&q=80",
-  },
-  {
-    text: "Perfect for our family movie nights! The kids absolutely love the variety of treats in each box.",
-    name: "Amanda K.",
-    rating: 5,
-    avatar:
-      "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop&crop=face&auto=format&q=80",
-  },
-  {
-    text: "Outstanding quality and presentation. This snack box exceeded all my expectations!",
-    name: "David P.",
-    rating: 5,
-    avatar:
-      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face&auto=format&q=80",
-  },
-  {
-    text: "Great customer service and amazing products. Will definitely order again for upcoming holidays.",
-    name: "Lisa T.",
-    rating: 5,
-    avatar:
-      "https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=150&h=150&fit=crop&crop=face&auto=format&q=80",
-  },
-];
+import { useAdminData } from "@/hooks/useAdminData";
 
 const StarRating = ({ rating }: { rating: number }) => {
   return (
