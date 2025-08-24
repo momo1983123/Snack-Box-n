@@ -77,6 +77,11 @@ const AdminLayout = ({ children }: AdminLayoutProps) => {
       icon: MessageCircle,
       label: "Popups",
     },
+    {
+      path: "/admin/footer",
+      icon: FileText,
+      label: "Footer",
+    },
   ];
 
   const isActive = (path: string, exact: boolean = false) => {
