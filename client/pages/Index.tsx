@@ -849,7 +849,7 @@ export default function Index() {
                 {/* Main image container with overlap effect */}
                 <div className="relative bg-white/90 backdrop-blur-sm p-4 rounded-3xl shadow-2xl border border-white/50">
                   <img
-                    src="https://cdn.builder.io/api/v1/image/assets%2Ffc09862a9f0941d4aeda13a8cb2480bc%2F9a927196010f464595d03440e3666d58?format=webp&width=700&quality=90"
+                    src={hero.heroImage}
                     alt="Gift A Snack Premium Snack Box Collection with Chips Crackers Cookies and Candy Variety Packs for Gifts and Care Packages"
                     className="relative z-10 w-full h-auto rounded-2xl transform transition-transform duration-500 hover:scale-105"
                     loading="eager"
@@ -1145,7 +1145,7 @@ export default function Index() {
                     {/* Popular Badge */}
                     {index === 1 && (
                       <div className="absolute top-3 right-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white px-2.5 py-1 rounded-xl text-xs font-bold shadow-xl">
-                        🔥 Popular
+                        ��� Popular
                       </div>
                     )}
 
