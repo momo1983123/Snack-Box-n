@@ -643,7 +643,7 @@ export default function Index() {
     );
   }
 
-  const { hero, carousel, features, products, testimonials, tiktok, cta } = adminData;
+  const { hero, carousel, features, products, testimonials, tiktok, cta, footer } = adminData;
 
   const scrollToProducts = () => {
     document
