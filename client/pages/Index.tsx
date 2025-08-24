@@ -785,30 +785,44 @@ export default function Index() {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 sm:gap-4 justify-center lg:justify-start mb-6 sm:mb-8">
-                <button
-                  onClick={scrollToProducts}
-                  className="group relative bg-gradient-to-r from-logo-green to-green-500 hover:from-green-500 hover:to-emerald-500 text-white font-black px-8 sm:px-10 py-5 sm:py-6 rounded-2xl text-lg sm:text-xl transition-all duration-300 flex items-center justify-center gap-3 min-h-[64px] sm:min-h-[72px] touch-manipulation tap-highlight-none focus-visible-ring shadow-xl hover:shadow-2xl transform hover:scale-105 overflow-hidden"
-                  style={{
-                    filter: "drop-shadow(0 0 20px rgba(155, 217, 91, 0.4))",
-                  }}
-                >
-                  {/* Glow effect */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-logo-green/50 to-green-400/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl"></div>
-                  <Package className="w-6 h-6 relative z-10" />
-                  <span className="relative z-10">Shop Now</span>
-                  {/* Shine effect */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
-                </button>
-                <button
-                  onClick={() =>
-                    document
-                      .getElementById("why-choose-section")
-                      ?.scrollIntoView({ behavior: "smooth" })
-                  }
-                  className="border-2 border-logo-green text-logo-green hover:bg-logo-green hover:text-white font-bold px-8 sm:px-10 py-5 sm:py-6 rounded-2xl text-lg sm:text-xl transition-all duration-300 min-h-[64px] sm:min-h-[72px] touch-manipulation tap-highlight-none focus-visible-ring hover:shadow-lg transform hover:scale-105"
-                >
-                  Learn More
-                </button>
+                {hero.buttons.primary.text && (
+                  <button
+                    onClick={() => {
+                      if (hero.buttons.primary.action === 'scrollToProducts') {
+                        scrollToProducts();
+                      } else if (hero.buttons.primary.action.startsWith('scroll')) {
+                        const elementId = hero.buttons.primary.action.replace('scrollTo', '').toLowerCase() + '-section';
+                        document.getElementById(elementId)?.scrollIntoView({ behavior: 'smooth' });
+                      }
+                    }}
+                    className="group relative bg-gradient-to-r from-logo-green to-green-500 hover:from-green-500 hover:to-emerald-500 text-white font-black px-8 sm:px-10 py-5 sm:py-6 rounded-2xl text-lg sm:text-xl transition-all duration-300 flex items-center justify-center gap-3 min-h-[64px] sm:min-h-[72px] touch-manipulation tap-highlight-none focus-visible-ring shadow-xl hover:shadow-2xl transform hover:scale-105 overflow-hidden"
+                    style={{
+                      filter: "drop-shadow(0 0 20px rgba(155, 217, 91, 0.4))",
+                    }}
+                  >
+                    {/* Glow effect */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-logo-green/50 to-green-400/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl"></div>
+                    <Package className="w-6 h-6 relative z-10" />
+                    <span className="relative z-10">{hero.buttons.primary.text}</span>
+                    {/* Shine effect */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+                  </button>
+                )}
+                {hero.buttons.secondary.text && (
+                  <button
+                    onClick={() => {
+                      if (hero.buttons.secondary.action === 'scrollToFeatures') {
+                        document.getElementById("why-choose-section")?.scrollIntoView({ behavior: "smooth" });
+                      } else if (hero.buttons.secondary.action.startsWith('scroll')) {
+                        const elementId = hero.buttons.secondary.action.replace('scrollTo', '').toLowerCase() + '-section';
+                        document.getElementById(elementId)?.scrollIntoView({ behavior: 'smooth' });
+                      }
+                    }}
+                    className="border-2 border-logo-green text-logo-green hover:bg-logo-green hover:text-white font-bold px-8 sm:px-10 py-5 sm:py-6 rounded-2xl text-lg sm:text-xl transition-all duration-300 min-h-[64px] sm:min-h-[72px] touch-manipulation tap-highlight-none focus-visible-ring hover:shadow-lg transform hover:scale-105"
+                  >
+                    {hero.buttons.secondary.text}
+                  </button>
+                )}
               </div>
 
               {/* Enhanced Trust Indicators */}
