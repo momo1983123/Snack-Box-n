@@ -211,12 +211,27 @@ const features = [
 ];
 
 export default function Index() {
-  const [selectedProduct, setSelectedProduct] = useState<
-    (typeof products)[0] | null
-  >(null);
+  const { data: adminData, loading } = useAdminData();
+  useSEOData(); // Apply SEO meta tags
+
+  const [selectedProduct, setSelectedProduct] = useState<any>(null);
   const [showFloatingButton, setShowFloatingButton] = useState(false);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
+
+  // Show loading state while data loads
+  if (loading || !adminData) {
+    return (
+      <div className="min-h-screen bg-blue-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-logo-green mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
+  const { hero, carousel, features, products, testimonials, tiktok, cta } = adminData;
 
   const scrollToProducts = () => {
     document
