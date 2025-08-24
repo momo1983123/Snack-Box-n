@@ -16,9 +16,16 @@ const StarRating = ({ rating }: { rating: number }) => {
 };
 
 export default function TestimonialsCarousel() {
+  const { data } = useAdminData();
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
+
+  if (!data?.testimonials) {
+    return null;
+  }
+
+  const testimonials = data.testimonials;
 
   // Auto-sliding testimonials
   useEffect(() => {
