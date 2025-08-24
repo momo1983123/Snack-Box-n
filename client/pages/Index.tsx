@@ -897,8 +897,8 @@ export default function Index() {
 
           {/* Single Row Layout for All Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 lg:gap-8 max-w-6xl mx-auto">
-            {features.map((feature, index) => {
-              const IconComponent = feature.icon;
+            {features.items.map((feature, index) => {
+              const IconComponent = getIconComponent(feature.icon);
               const colors = [
                 "from-red-500 to-pink-500",
                 "from-blue-500 to-cyan-500",
@@ -919,12 +919,12 @@ export default function Index() {
                   <div className="relative mb-6">
                     {/* Outer glow ring */}
                     <div
-                      className={`absolute inset-0 w-24 h-24 mx-auto bg-gradient-to-br ${colors[index]} rounded-full blur-lg opacity-30 group-hover:opacity-50 transition-opacity duration-300`}
+                      className={`absolute inset-0 w-24 h-24 mx-auto bg-gradient-to-br ${colors[index % colors.length]} rounded-full blur-lg opacity-30 group-hover:opacity-50 transition-opacity duration-300`}
                     ></div>
 
                     {/* Main circular icon */}
                     <div
-                      className={`relative w-24 h-24 mx-auto bg-gradient-to-br ${colors[index]} rounded-full flex items-center justify-center shadow-xl group-hover:shadow-2xl transition-all duration-300 transform group-hover:rotate-6`}
+                      className={`relative w-24 h-24 mx-auto bg-gradient-to-br ${colors[index % colors.length]} rounded-full flex items-center justify-center shadow-xl group-hover:shadow-2xl transition-all duration-300 transform group-hover:rotate-6`}
                     >
                       <IconComponent className="w-10 h-10 text-white drop-shadow-lg" />
 
@@ -949,7 +949,7 @@ export default function Index() {
 
                   {/* Bottom accent line */}
                   <div
-                    className={`w-12 h-1 bg-gradient-to-r ${colors[index]} mx-auto mt-4 rounded-full opacity-60 group-hover:opacity-100 group-hover:w-16 transition-all duration-300`}
+                    className={`w-12 h-1 bg-gradient-to-r ${colors[index % colors.length]} mx-auto mt-4 rounded-full opacity-60 group-hover:opacity-100 group-hover:w-16 transition-all duration-300`}
                   ></div>
                 </div>
               );
