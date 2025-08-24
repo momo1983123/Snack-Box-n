@@ -888,11 +888,10 @@ export default function Index() {
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-12 sm:mb-16">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-heading-red mb-4 sm:mb-6 tracking-tight">
-              Why Choose Gift A Snack Box?
+              {features.title}
             </h2>
             <p className="text-lg text-snack-dark-blue/80 max-w-2xl mx-auto leading-relaxed">
-              Discover what makes our snack boxes the perfect choice for every
-              occasion and celebration
+              {features.description}
             </p>
           </div>
 
@@ -1145,7 +1144,7 @@ export default function Index() {
                     {/* Popular Badge */}
                     {index === 1 && (
                       <div className="absolute top-3 right-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white px-2.5 py-1 rounded-xl text-xs font-bold shadow-xl">
-                        ��� Popular
+                        🔥 Popular
                       </div>
                     )}
 
