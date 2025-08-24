@@ -9,6 +9,17 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import ProductPage from "./pages/ProductPage";
 import NotFound from "./pages/NotFound";
+import AdminLayout from "./pages/admin/AdminLayout";
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import HeroAdmin from "./pages/admin/HeroAdmin";
+import CarouselAdmin from "./pages/admin/CarouselAdmin";
+import FeaturesAdmin from "./pages/admin/FeaturesAdmin";
+import ProductsAdmin from "./pages/admin/ProductsAdmin";
+import TestimonialsAdmin from "./pages/admin/TestimonialsAdmin";
+import TikTokAdmin from "./pages/admin/TikTokAdmin";
+import CTAAdmin from "./pages/admin/CTAAdmin";
+import SEOAdmin from "./pages/admin/SEOAdmin";
+import PopupsAdmin from "./pages/admin/PopupsAdmin";
 import { useEffect } from "react";
 
 const queryClient = new QueryClient();
