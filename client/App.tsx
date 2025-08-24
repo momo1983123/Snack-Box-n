@@ -153,6 +153,7 @@ const App = () => {
               <Route path="cta" element={<CTAAdmin />} />
               <Route path="seo" element={<SEOAdmin />} />
               <Route path="popups" element={<PopupsAdmin />} />
+              <Route path="footer" element={<FooterAdmin />} />
             </Route>
 
             <Route path="/:slug" element={<ProductPage />} />
