@@ -1307,50 +1307,56 @@ export default function Index() {
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <div className="card-enhanced p-4 sm:p-8 bg-white/80 backdrop-blur-sm">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-heading-red mb-3 sm:mb-4 tracking-tight">
-              Ready to Experience the Tastiest Gift A Snack Box?
+              {cta.title}
             </h2>
             <p className="text-base text-snack-dark-blue/80 mb-4 sm:mb-6 max-w-2xl mx-auto leading-relaxed">
-              Join thousands of satisfied customers. Choose your perfect size
-              and order now from Walmart.
+              {cta.description}
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center mb-4 sm:mb-6">
-              <button
-                onClick={scrollToProducts}
-                className="bg-logo-green hover:bg-green-500 text-white font-bold px-6 sm:px-8 py-4 sm:py-3 rounded-xl text-base button-enhanced flex items-center justify-center gap-2 min-h-[56px] sm:min-h-[48px]"
-              >
-                <ShoppingCart className="w-5 h-5" />
-                Order Now
-              </button>
-              <button
-                onClick={() =>
-                  document
-                    .getElementById("testimonials-section")
-                    ?.scrollIntoView({ behavior: "smooth" })
-                }
-                className="border-2 border-logo-green text-logo-green hover:bg-logo-green hover:text-white font-bold px-6 sm:px-8 py-4 sm:py-3 rounded-xl text-base transition-all duration-300 min-h-[56px] sm:min-h-[48px]"
-              >
-                Read Reviews
-              </button>
+              {cta.buttons.primary.text && (
+                <button
+                  onClick={() => {
+                    if (cta.buttons.primary.action === 'scrollToProducts') {
+                      scrollToProducts();
+                    } else if (cta.buttons.primary.action.startsWith('scroll')) {
+                      const elementId = cta.buttons.primary.action.replace('scrollTo', '').toLowerCase() + '-section';
+                      document.getElementById(elementId)?.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
+                  className="bg-logo-green hover:bg-green-500 text-white font-bold px-6 sm:px-8 py-4 sm:py-3 rounded-xl text-base button-enhanced flex items-center justify-center gap-2 min-h-[56px] sm:min-h-[48px]"
+                >
+                  <ShoppingCart className="w-5 h-5" />
+                  {cta.buttons.primary.text}
+                </button>
+              )}
+              {cta.buttons.secondary.text && (
+                <button
+                  onClick={() => {
+                    if (cta.buttons.secondary.action === 'scrollToTestimonials') {
+                      document.getElementById("testimonials-section")?.scrollIntoView({ behavior: "smooth" });
+                    } else if (cta.buttons.secondary.action.startsWith('scroll')) {
+                      const elementId = cta.buttons.secondary.action.replace('scrollTo', '').toLowerCase() + '-section';
+                      document.getElementById(elementId)?.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
+                  className="border-2 border-logo-green text-logo-green hover:bg-logo-green hover:text-white font-bold px-6 sm:px-8 py-4 sm:py-3 rounded-xl text-base transition-all duration-300 min-h-[56px] sm:min-h-[48px]"
+                >
+                  {cta.buttons.secondary.text}
+                </button>
+              )}
             </div>
 
             {/* Trust Indicators */}
             <div className="flex flex-wrap items-center justify-center gap-4 text-xs text-snack-dark-blue/60">
-              <div className="flex items-center gap-1.5">
-                <CheckCircle className="w-3 h-3 text-logo-green" />
-                30+ Premium Snacks
-              </div>
-              <div className="flex items-center gap-1.5">
-                <CheckCircle className="w-3 h-3 text-logo-green" />
-                Gift-Ready Packaging
-              </div>
-              <div className="flex items-center gap-1.5">
-                <CheckCircle className="w-3 h-3 text-logo-green" />
-                Fast US Shipping
-              </div>
-              <div className="flex items-center gap-1.5">
-                <CheckCircle className="w-3 h-3 text-logo-green" />
-                Satisfaction Guaranteed
-              </div>
+              {cta.trustIndicators.map((indicator, index) => {
+                const IconComponent = getIconComponent(indicator.icon);
+                return (
+                  <div key={index} className="flex items-center gap-1.5">
+                    <IconComponent className="w-3 h-3 text-logo-green" />
+                    {indicator.text}
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
