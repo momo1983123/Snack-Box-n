@@ -175,37 +175,6 @@ export default function Index() {
     }
   };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrolled = window.scrollY;
-      const threshold = window.innerHeight * 0.3; // Show earlier - after 30% scroll
-      setShowFloatingButton(scrolled > threshold);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  // Control body overflow when modal is open
-  useEffect(() => {
-    if (selectedProduct) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
-
-    // Cleanup on unmount
-    return () => {
-      document.body.style.overflow = "unset";
-    };
-  }, [selectedProduct]);
-
-  // Shared state for DOM protection across all TikTok initialization functions
-  const domProtectionStateRef = useRef({
-    isActive: false,
-    restoreFunction: null as (() => void) | null,
-  });
-
   // Enhanced TikTok embed initialization with comprehensive error prevention
   useEffect(() => {
     let retryCount = 0;
