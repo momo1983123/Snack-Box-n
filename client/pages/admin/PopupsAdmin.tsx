@@ -377,11 +377,15 @@ const PopupsAdmin = () => {
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-blue-600 mt-1">•</span>
+                  <span><strong>Product-Specific Popups:</strong> Associate popups with specific products to create targeted messaging for each snack box size</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-blue-600 mt-1">•</span>
                   <span>Test your popups with the preview feature before enabling</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-blue-600 mt-1">•</span>
-                  <span>Only enable 1-2 popups at a time to avoid overwhelming users</span>
+                  <span>Only enable 1-2 general popups at a time to avoid overwhelming users</span>
                 </li>
               </ul>
             </CardContent>
