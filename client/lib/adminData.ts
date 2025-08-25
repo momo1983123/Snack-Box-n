@@ -107,7 +107,8 @@ export interface AdminData {
     name: string;
     trigger: string;
     title: string;
-    content: string;
+    description: string; // Main description
+    promotionalText: string; // Special promotional content
     buttonText: string;
     buttonLink: string;
     image: string;
