@@ -644,7 +644,7 @@ export default function Index() {
     );
   }
 
-  const { hero, carousel, features, products, testimonials, tiktok, cta, footer } = adminData;
+  const { hero, carousel, features, products, testimonials, tiktok, cta, footer, popups } = adminData;
 
   const scrollToProducts = () => {
     document
@@ -654,6 +654,21 @@ export default function Index() {
 
   const openFirstProductModal = () => {
     setSelectedProduct(products[0]);
+  };
+
+  // Get product-specific popup
+  const getProductPopup = (productId: number) => {
+    return popups?.find(popup => popup.productId === productId && popup.enabled);
+  };
+
+  // Handle product card click - show promotional popup first
+  const handleProductClick = (product: any) => {
+    const productPopup = getProductPopup(product.id);
+    if (productPopup) {
+      setActivePopup(productPopup);
+    } else {
+      setSelectedProduct(product);
+    }
   };
 
   // Swipe to close functionality
