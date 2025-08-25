@@ -97,6 +97,7 @@ export default function Index() {
   const [showFloatingButton, setShowFloatingButton] = useState(false);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const [activePopup, setActivePopup] = useState<any>(null);
 
   // Shared state for DOM protection across all TikTok initialization functions
   const domProtectionStateRef = useRef({
