@@ -1214,7 +1214,7 @@ export default function Index() {
 
                     {/* Box Contents Icons - playful visual */}
                     <div className="flex items-center gap-1">
-                      <span className="text-sm lg:text-base">�����</span>
+                      <span className="text-sm lg:text-base">�������</span>
                       <span className="text-sm lg:text-base">🍫</span>
                       <span className="text-sm lg:text-base">🥨</span>
                       <span className="text-xs text-gray-500 ml-2 font-medium">
@@ -1653,6 +1653,95 @@ export default function Index() {
           {/* Shine effect on hover */}
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700 rounded-2xl"></div>
         </button>
+      )}
+
+      {/* Promotional Popup */}
+      {activePopup && (
+        <>
+          {/* Modal Backdrop with Blur Effect */}
+          <div
+            className="fixed inset-0 bg-black/60 z-50"
+            style={{ backdropFilter: "blur(5px)" }}
+            onClick={() => setActivePopup(null)}
+          ></div>
+
+          {/* Modal Container */}
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 lg:p-8">
+            <div
+              className="bg-white w-full sm:w-[90%] sm:max-w-lg lg:max-w-2xl shadow-2xl rounded-2xl sm:rounded-3xl relative overflow-hidden max-h-[90vh]"
+              style={{
+                animation: "modalSlideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
+              }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Close Button */}
+              <button
+                onClick={() => setActivePopup(null)}
+                className="absolute top-4 right-4 z-30 w-10 h-10 sm:w-12 sm:h-12 bg-white/95 backdrop-blur-sm hover:bg-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-200 group border border-gray-200"
+              >
+                <X className="w-5 h-5 sm:w-6 sm:h-6 text-gray-700 group-hover:text-gray-900 group-hover:scale-110 transition-all" />
+              </button>
+
+              <div className="p-6 sm:p-8">
+                {/* Popup Image */}
+                {activePopup.image && (
+                  <div className="mb-6 text-center">
+                    <img
+                      src={activePopup.image}
+                      alt={activePopup.title}
+                      className="w-full max-w-xs mx-auto h-48 object-contain rounded-lg bg-gray-50 p-2"
+                    />
+                  </div>
+                )}
+
+                {/* Popup Title */}
+                {activePopup.title && (
+                  <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 text-center">
+                    {activePopup.title}
+                  </h2>
+                )}
+
+                {/* Popup Content */}
+                {activePopup.content && (
+                  <p className="text-gray-700 mb-6 text-center leading-relaxed text-base sm:text-lg">
+                    {activePopup.content}
+                  </p>
+                )}
+
+                {/* Action Buttons */}
+                <div className="space-y-3">
+                  {/* Primary CTA Button */}
+                  {activePopup.buttonText && activePopup.buttonLink && (
+                    <a
+                      href={activePopup.buttonLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-4 text-center rounded-xl text-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-3"
+                    >
+                      <ShoppingCart className="w-5 h-5" />
+                      {activePopup.buttonText}
+                    </a>
+                  )}
+
+                  {/* View Details Button */}
+                  <button
+                    onClick={() => {
+                      const product = products.find(p => p.id === activePopup.productId);
+                      if (product) {
+                        setActivePopup(null);
+                        setSelectedProduct(product);
+                      }
+                    }}
+                    className="w-full border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold py-3 text-center rounded-xl text-base transition-all duration-300 flex items-center justify-center gap-2"
+                  >
+                    <Eye className="w-4 h-4" />
+                    View Full Details
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </>
       )}
 
       {/* Restructured Modal - 40/60 Desktop Layout */}
