@@ -135,8 +135,10 @@ export interface AdminData {
 const defaultAdminData: AdminData = {
   seo: {
     metaTitle: "Gift A Snack - Premium Snack Boxes for Gifts & Care Packages",
-    metaDescription: "Premium assortment of delicious snacks, beautifully packaged. Perfect for gifts, office treats, and special occasions. Order now from Walmart.",
-    metaKeywords: "snack box, gift box, care package, premium snacks, variety pack, chips, cookies, candy, office snacks",
+    metaDescription:
+      "Premium assortment of delicious snacks, beautifully packaged. Perfect for gifts, office treats, and special occasions. Order now from Walmart.",
+    metaKeywords:
+      "snack box, gift box, care package, premium snacks, variety pack, chips, cookies, candy, office snacks",
   },
   hero: {
     logo: "https://cdn.builder.io/api/v1/image/assets%2F79b7dfd5cb0f4ca0b96e836c27c6ef40%2Fcd932fcd18414ba798762d622c2b825c?format=webp&width=300&quality=90",
@@ -149,7 +151,8 @@ const defaultAdminData: AdminData = {
       line2: "– Gift A Snack",
     },
     description: {
-      desktop: "Premium assortment of delicious snacks, beautifully packaged. Perfect for gifts, office treats, and special occasions.",
+      desktop:
+        "Premium assortment of delicious snacks, beautifully packaged. Perfect for gifts, office treats, and special occasions.",
       mobile: "Premium snack boxes perfect for gifts and special occasions.",
     },
     buttons: {
@@ -167,11 +170,13 @@ const defaultAdminData: AdminData = {
       { icon: "CheckCircle", text: "Fast Shipping" },
       { icon: "CheckCircle", text: "Gift Ready" },
     ],
-    heroImage: "https://cdn.builder.io/api/v1/image/assets%2Ffc09862a9f0941d4aeda13a8cb2480bc%2F9a927196010f464595d03440e3666d58?format=webp&width=700&quality=90",
+    heroImage:
+      "https://cdn.builder.io/api/v1/image/assets%2Ffc09862a9f0941d4aeda13a8cb2480bc%2F9a927196010f464595d03440e3666d58?format=webp&width=700&quality=90",
   },
   carousel: {
     title: "Our Snack Box Variety Collection",
-    description: "Discover the perfect snack experience for every occasion and celebration",
+    description:
+      "Discover the perfect snack experience for every occasion and celebration",
     images: [
       {
         id: 1,
@@ -202,7 +207,8 @@ const defaultAdminData: AdminData = {
   },
   features: {
     title: "Why Choose Gift A Snack Box?",
-    description: "Discover what makes our snack boxes the perfect choice for every occasion and celebration",
+    description:
+      "Discover what makes our snack boxes the perfect choice for every occasion and celebration",
     items: [
       {
         title: "Huge Variety",
@@ -236,13 +242,16 @@ const defaultAdminData: AdminData = {
       id: 1,
       name: "Gift a Snack Spread the Joy Snack Pack, Assorted College Care Package for Students, Office Party, 35 Count",
       shortName: "Gift a Snack – Spread the Joy Snack Pack",
-      description: "Spread joy with the perfect gift for adults, teens, and college students. Premium assortment of chips, crackers, cookies, and candy in beautifully branded high-end packaging.",
+      description:
+        "Spread joy with the perfect gift for adults, teens, and college students. Premium assortment of chips, crackers, cookies, and candy in beautifully branded high-end packaging.",
       size: "35 ct",
       price: "$22.97",
       rating: 5,
       reviewCount: 286,
-      image: "https://cdn.builder.io/api/v1/image/assets%2F79b7dfd5cb0f4ca0b96e836c27c6ef40%2F77788b1b06194d9e9278b4a63bb3471e?format=webp&width=800",
-      walmartLink: "https://www.walmart.com/ip/Gift-a-Snack-35-Count-Snacks-Box-with-Variety-Assortment-of-snack-packs-chips-variety-Crackers-Cookies-Candy/6277108895?classType=VARIANT",
+      image:
+        "https://cdn.builder.io/api/v1/image/assets%2F79b7dfd5cb0f4ca0b96e836c27c6ef40%2F77788b1b06194d9e9278b4a63bb3471e?format=webp&width=800",
+      walmartLink:
+        "https://www.walmart.com/ip/Gift-a-Snack-35-Count-Snacks-Box-with-Variety-Assortment-of-snack-packs-chips-variety-Crackers-Cookies-Candy/6277108895?classType=VARIANT",
       tags: ["Starter Pack"],
       bulletPoints: [
         "Beautifully branded high-end packaging for an impressive gift.",
@@ -258,13 +267,16 @@ const defaultAdminData: AdminData = {
       id: 2,
       name: "Gift a Snack Chip Variety Snack Box – Snack Pack Variety Box, 42 Count",
       shortName: "Gift a Snack Chip Variety Snack Box",
-      description: "Variety assortment of brands like Airheads, Cheez It, and Famous Amos. Contains 42 individually wrapped treats in high-end packaging with a greeting card.",
+      description:
+        "Variety assortment of brands like Airheads, Cheez It, and Famous Amos. Contains 42 individually wrapped treats in high-end packaging with a greeting card.",
       size: "42 ct",
       price: "$23.96",
       rating: 5,
       reviewCount: 286,
-      image: "https://cdn.builder.io/api/v1/image/assets%2F79b7dfd5cb0f4ca0b96e836c27c6ef40%2Fcd06d6ab52e341e2b57efd6b128aeeaa?format=webp&width=800",
-      walmartLink: "https://www.walmart.com/ip/Gift-a-Snack-Chip-Variety-Snack-Box-Snack-Pack-Variety-Box-42-Count/5298521902?classType=VARIANT&athbdg=L1600",
+      image:
+        "https://cdn.builder.io/api/v1/image/assets%2F79b7dfd5cb0f4ca0b96e836c27c6ef40%2Fcd06d6ab52e341e2b57efd6b128aeeaa?format=webp&width=800",
+      walmartLink:
+        "https://www.walmart.com/ip/Gift-a-Snack-Chip-Variety-Snack-Box-Snack-Pack-Variety-Box-42-Count/5298521902?classType=VARIANT&athbdg=L1600",
       tags: ["Popular"],
       bulletPoints: [
         "The Gift a Snack Chip Variety Snack Box contains 42 individually wrapped treats, including chips, crackers, cookies, and candy.",
@@ -279,13 +291,16 @@ const defaultAdminData: AdminData = {
       id: 3,
       name: "Gift a Snack 52 Count Snack Box with Variety Snacks, Chips, Crackers, Cookies, Candy",
       shortName: "Gift a Snack 52 Count Snack Box",
-      description: "52-count snack box filled with a diverse variety of sweet and salty treats. Beautifully branded high-end packaging perfect for gifts and care packages.",
+      description:
+        "52-count snack box filled with a diverse variety of sweet and salty treats. Beautifully branded high-end packaging perfect for gifts and care packages.",
       size: "52 ct",
       price: "$31.46",
       rating: 5,
       reviewCount: 286,
-      image: "https://cdn.builder.io/api/v1/image/assets%2F79b7dfd5cb0f4ca0b96e836c27c6ef40%2F5ff73d8278224c2ab0b862f059e3802c?format=webp&width=800",
-      walmartLink: "https://www.walmart.com/ip/Gift-a-Snack-52-Count-Snack-Box-with-Variety-Snacks-Chips-Crackers-Cookies-Candy/5915077819?classType=VARIANT&athbdg=L1900",
+      image:
+        "https://cdn.builder.io/api/v1/image/assets%2F79b7dfd5cb0f4ca0b96e836c27c6ef40%2F5ff73d8278224c2ab0b862f059e3802c?format=webp&width=800",
+      walmartLink:
+        "https://www.walmart.com/ip/Gift-a-Snack-52-Count-Snack-Box-with-Variety-Snacks-Chips-Crackers-Cookies-Candy/5915077819?classType=VARIANT&athbdg=L1900",
       tags: ["Best Value"],
       bulletPoints: [
         "Beautifully branded high-end packaging for an impressive gift.",
@@ -302,13 +317,16 @@ const defaultAdminData: AdminData = {
       id: 4,
       name: "Ultimate Snack Box Variety Pack – 105 Count by Gift A Snack",
       shortName: "Ultimate Snack Box – 105 Count",
-      description: "105-count pack with America's favorite candies, chips, crackers, and bars. Perfectly packaged in individual servings for on-the-go ease and ideal as a gift.",
+      description:
+        "105-count pack with America's favorite candies, chips, crackers, and bars. Perfectly packaged in individual servings for on-the-go ease and ideal as a gift.",
       size: "105 ct",
       price: "$45.97",
       rating: 5,
       reviewCount: 286,
-      image: "https://cdn.builder.io/api/v1/image/assets%2F79b7dfd5cb0f4ca0b96e836c27c6ef40%2F936b74c9566f406ebebd96074d052d09?format=webp&width=800",
-      walmartLink: "https://www.walmart.com/ip/Ultimate-Snack-Box-Variety-Pack-105-Count-by-Gift-A-Snack/14496505954?classType=VARIANT",
+      image:
+        "https://cdn.builder.io/api/v1/image/assets%2F79b7dfd5cb0f4ca0b96e836c27c6ef40%2F936b74c9566f406ebebd96074d052d09?format=webp&width=800",
+      walmartLink:
+        "https://www.walmart.com/ip/Ultimate-Snack-Box-Variety-Pack-105-Count-by-Gift-A-Snack/14496505954?classType=VARIANT",
       tags: ["Ultimate"],
       bulletPoints: [
         "105-count pack with America's favorite candies, chips, crackers, and bars.",
@@ -322,42 +340,49 @@ const defaultAdminData: AdminData = {
       text: "The best gift I've ever given my friend! Elegant packaging and the products are fresh and super tasty.",
       name: "Sarah M.",
       rating: 5,
-      avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b830?w=150&h=150&fit=crop&crop=face&auto=format&q=80",
+      avatar:
+        "https://images.unsplash.com/photo-1494790108755-2616b612b830?w=150&h=150&fit=crop&crop=face&auto=format&q=80",
     },
     {
       text: "I bought the box for my office and everyone loved the wide variety of snacks.",
       name: "Mike R.",
       rating: 5,
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face&auto=format&q=80",
+      avatar:
+        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face&auto=format&q=80",
     },
     {
       text: "Fast delivery, excellent quality, and I recommend it to everyone.",
       name: "Jessica L.",
       rating: 5,
-      avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face&auto=format&q=80",
+      avatar:
+        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face&auto=format&q=80",
     },
     {
       text: "Perfect for our family movie nights! The kids absolutely love the variety of treats in each box.",
       name: "Amanda K.",
       rating: 5,
-      avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop&crop=face&auto=format&q=80",
+      avatar:
+        "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop&crop=face&auto=format&q=80",
     },
     {
       text: "Outstanding quality and presentation. This snack box exceeded all my expectations!",
       name: "David P.",
       rating: 5,
-      avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face&auto=format&q=80",
+      avatar:
+        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face&auto=format&q=80",
     },
     {
       text: "Great customer service and amazing products. Will definitely order again for upcoming holidays.",
       name: "Lisa T.",
       rating: 5,
-      avatar: "https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=150&h=150&fit=crop&crop=face&auto=format&q=80",
+      avatar:
+        "https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=150&h=150&fit=crop&crop=face&auto=format&q=80",
     },
   ],
   tiktok: {
     title: "Watch Gift A Snack on TikTok",
-    description: "See our snack boxes in action and get inspired for your next order",
+    description:
+      "See our snack boxes in action and get inspired for your next order",
     followText: "Follow us on TikTok",
     followLink: "https://tiktok.com/@nut.cravings",
     videos: [
@@ -380,7 +405,8 @@ const defaultAdminData: AdminData = {
   },
   cta: {
     title: "Ready to Experience the Tastiest Gift A Snack Box?",
-    description: "Join thousands of satisfied customers. Choose your perfect size and order now from Walmart.",
+    description:
+      "Join thousands of satisfied customers. Choose your perfect size and order now from Walmart.",
     buttons: {
       primary: {
         text: "Order Now",
@@ -404,11 +430,14 @@ const defaultAdminData: AdminData = {
       name: "35 Count Snack Box Popup",
       trigger: "button-click",
       title: "Perfect Starter Pack!",
-      description: "Our 35-count snack box is perfect for testing our premium variety. Great for small offices, dorm rooms, or personal treats.",
+      description:
+        "Our 35-count snack box is perfect for testing our premium variety. Great for small offices, dorm rooms, or personal treats.",
       promotionalText: "Limited time offer with free shipping!",
       buttonText: "Order 35-Count Box",
-      buttonLink: "https://www.walmart.com/ip/Gift-a-Snack-35-Count-Snacks-Box-with-Variety-Assortment-of-snack-packs-chips-variety-Crackers-Cookies-Candy/6277108895?classType=VARIANT",
-      image: "https://cdn.builder.io/api/v1/image/assets%2F79b7dfd5cb0f4ca0b96e836c27c6ef40%2F77788b1b06194d9e9278b4a63bb3471e?format=webp&width=400",
+      buttonLink:
+        "https://www.walmart.com/ip/Gift-a-Snack-35-Count-Snacks-Box-with-Variety-Assortment-of-snack-packs-chips-variety-Crackers-Cookies-Candy/6277108895?classType=VARIANT",
+      image:
+        "https://cdn.builder.io/api/v1/image/assets%2F79b7dfd5cb0f4ca0b96e836c27c6ef40%2F77788b1b06194d9e9278b4a63bb3471e?format=webp&width=400",
       enabled: true,
       productId: 1,
     },
@@ -417,11 +446,14 @@ const defaultAdminData: AdminData = {
       name: "42 Count Chip Variety Popup",
       trigger: "button-click",
       title: "Chip Lovers Paradise!",
-      description: "42 individually wrapped chip varieties including Airheads, Cheez It, and Famous Amos. Perfect for chip enthusiasts and variety seekers.",
+      description:
+        "42 individually wrapped chip varieties including Airheads, Cheez It, and Famous Amos. Perfect for chip enthusiasts and variety seekers.",
       promotionalText: "Best value for families!",
       buttonText: "Order 42-Count Box",
-      buttonLink: "https://www.walmart.com/ip/Gift-a-Snack-Chip-Variety-Snack-Box-Snack-Pack-Variety-Box-42-Count/5298521902?classType=VARIANT&athbdg=L1600",
-      image: "https://cdn.builder.io/api/v1/image/assets%2F79b7dfd5cb0f4ca0b96e836c27c6ef40%2Fcd06d6ab52e341e2b57efd6b128aeeaa?format=webp&width=400",
+      buttonLink:
+        "https://www.walmart.com/ip/Gift-a-Snack-Chip-Variety-Snack-Box-Snack-Pack-Variety-Box-42-Count/5298521902?classType=VARIANT&athbdg=L1600",
+      image:
+        "https://cdn.builder.io/api/v1/image/assets%2F79b7dfd5cb0f4ca0b96e836c27c6ef40%2Fcd06d6ab52e341e2b57efd6b128aeeaa?format=webp&width=400",
       enabled: true,
       productId: 2,
     },
@@ -430,11 +462,14 @@ const defaultAdminData: AdminData = {
       name: "52 Count Variety Box Popup",
       trigger: "button-click",
       title: "Most Popular Choice!",
-      description: "Our 52-count variety box offers the perfect balance of sweet and salty treats. Ideal for medium offices, families, or generous gift-giving.",
+      description:
+        "Our 52-count variety box offers the perfect balance of sweet and salty treats. Ideal for medium offices, families, or generous gift-giving.",
       promotionalText: "Customer favorite!",
       buttonText: "Order 52-Count Box",
-      buttonLink: "https://www.walmart.com/ip/Gift-a-Snack-52-Count-Snack-Box-with-Variety-Snacks-Chips-Crackers-Cookies-Candy/5915077819?classType=VARIANT&athbdg=L1900",
-      image: "https://cdn.builder.io/api/v1/image/assets%2F79b7dfd5cb0f4ca0b96e836c27c6ef40%2F5ff73d8278224c2ab0b862f059e3802c?format=webp&width=400",
+      buttonLink:
+        "https://www.walmart.com/ip/Gift-a-Snack-52-Count-Snack-Box-with-Variety-Snacks-Chips-Crackers-Cookies-Candy/5915077819?classType=VARIANT&athbdg=L1900",
+      image:
+        "https://cdn.builder.io/api/v1/image/assets%2F79b7dfd5cb0f4ca0b96e836c27c6ef40%2F5ff73d8278224c2ab0b862f059e3802c?format=webp&width=400",
       enabled: true,
       productId: 3,
     },
@@ -443,11 +478,15 @@ const defaultAdminData: AdminData = {
       name: "105 Count Ultimate Box Popup",
       trigger: "button-click",
       title: "Ultimate Value Pack!",
-      description: "The ultimate snack experience with 105 premium treats! Perfect for large offices, events, or serious snack lovers.",
-      promotionalText: "America's favorite candies, chips, crackers, and bars included!",
+      description:
+        "The ultimate snack experience with 105 premium treats! Perfect for large offices, events, or serious snack lovers.",
+      promotionalText:
+        "America's favorite candies, chips, crackers, and bars included!",
       buttonText: "Order 105-Count Box",
-      buttonLink: "https://www.walmart.com/ip/Ultimate-Snack-Box-Variety-Pack-105-Count-by-Gift-A-Snack/14496505954?classType=VARIANT",
-      image: "https://cdn.builder.io/api/v1/image/assets%2F79b7dfd5cb0f4ca0b96e836c27c6ef40%2F936b74c9566f406ebebd96074d052d09?format=webp&width=400",
+      buttonLink:
+        "https://www.walmart.com/ip/Ultimate-Snack-Box-Variety-Pack-105-Count-by-Gift-A-Snack/14496505954?classType=VARIANT",
+      image:
+        "https://cdn.builder.io/api/v1/image/assets%2F79b7dfd5cb0f4ca0b96e836c27c6ef40%2F936b74c9566f406ebebd96074d052d09?format=webp&width=400",
       enabled: true,
       productId: 4,
     },
@@ -456,11 +495,13 @@ const defaultAdminData: AdminData = {
       name: "Welcome Popup",
       trigger: "page-load",
       title: "Welcome to Gift A Snack!",
-      description: "Get 10% off your first order when you sign up for our newsletter.",
+      description:
+        "Get 10% off your first order when you sign up for our newsletter.",
       promotionalText: "Limited time offer!",
       buttonText: "Get Discount",
       buttonLink: "mailto:info@giftasnack.com?subject=Newsletter Signup",
-      image: "https://cdn.builder.io/api/v1/image/assets%2F79b7dfd5cb0f4ca0b96e836c27c6ef40%2F77788b1b06194d9e9278b4a63bb3471e?format=webp&width=400",
+      image:
+        "https://cdn.builder.io/api/v1/image/assets%2F79b7dfd5cb0f4ca0b96e836c27c6ef40%2F77788b1b06194d9e9278b4a63bb3471e?format=webp&width=400",
       enabled: false,
     },
   ],
@@ -500,7 +541,7 @@ const defaultAdminData: AdminData = {
 };
 
 // localStorage key
-const ADMIN_DATA_KEY = 'gift-a-snack-admin-data';
+const ADMIN_DATA_KEY = "gift-a-snack-admin-data";
 
 // Helper functions for data management
 export const getAdminData = (): AdminData => {
@@ -510,7 +551,7 @@ export const getAdminData = (): AdminData => {
       return { ...defaultAdminData, ...JSON.parse(stored) };
     }
   } catch (error) {
-    console.warn('Error loading admin data from localStorage:', error);
+    console.warn("Error loading admin data from localStorage:", error);
   }
   return defaultAdminData;
 };
@@ -521,31 +562,36 @@ export const saveAdminData = (data: Partial<AdminData>): void => {
     const updatedData = { ...currentData, ...data };
     localStorage.setItem(ADMIN_DATA_KEY, JSON.stringify(updatedData));
     // Trigger a custom event to notify components of data changes
-    window.dispatchEvent(new CustomEvent('adminDataUpdated', { detail: updatedData }));
+    window.dispatchEvent(
+      new CustomEvent("adminDataUpdated", { detail: updatedData }),
+    );
   } catch (error) {
-    console.error('Error saving admin data to localStorage:', error);
+    console.error("Error saving admin data to localStorage:", error);
   }
 };
 
 export const resetAdminData = (): void => {
   try {
     localStorage.removeItem(ADMIN_DATA_KEY);
-    window.dispatchEvent(new CustomEvent('adminDataUpdated', { detail: defaultAdminData }));
+    window.dispatchEvent(
+      new CustomEvent("adminDataUpdated", { detail: defaultAdminData }),
+    );
   } catch (error) {
-    console.error('Error resetting admin data:', error);
+    console.error("Error resetting admin data:", error);
   }
 };
 
 // Utility function to upload and store images as data URLs temporarily
 export const uploadImage = (file: File): Promise<string> => {
   return new Promise((resolve, reject) => {
-    if (!file.type.startsWith('image/')) {
-      reject(new Error('File must be an image'));
+    if (!file.type.startsWith("image/")) {
+      reject(new Error("File must be an image"));
       return;
     }
 
-    if (file.size > 5 * 1024 * 1024) { // 5MB limit
-      reject(new Error('File size must be less than 5MB'));
+    if (file.size > 5 * 1024 * 1024) {
+      // 5MB limit
+      reject(new Error("File size must be less than 5MB"));
       return;
     }
 
@@ -554,7 +600,7 @@ export const uploadImage = (file: File): Promise<string> => {
       const result = e.target?.result as string;
       resolve(result);
     };
-    reader.onerror = () => reject(new Error('Failed to read file'));
+    reader.onerror = () => reject(new Error("Failed to read file"));
     reader.readAsDataURL(file);
   });
 };
