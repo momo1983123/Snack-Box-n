@@ -158,7 +158,7 @@ const PopupsAdmin = () => {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                 <div className="text-center p-4 bg-blue-50 rounded-lg">
                   <div className="text-2xl font-bold text-blue-600">
                     {data.length}
@@ -171,11 +171,17 @@ const PopupsAdmin = () => {
                   </div>
                   <div className="text-sm text-green-800">Active Popups</div>
                 </div>
+                <div className="text-center p-4 bg-purple-50 rounded-lg">
+                  <div className="text-2xl font-bold text-purple-600">
+                    {data.filter(p => p.productId).length}
+                  </div>
+                  <div className="text-sm text-purple-800">Product Popups</div>
+                </div>
                 <div className="text-center p-4 bg-yellow-50 rounded-lg">
                   <div className="text-2xl font-bold text-yellow-600">
-                    {data.filter(p => !p.enabled).length}
+                    {data.filter(p => !p.productId).length}
                   </div>
-                  <div className="text-sm text-yellow-800">Disabled Popups</div>
+                  <div className="text-sm text-yellow-800">General Popups</div>
                 </div>
               </div>
             </CardContent>
@@ -199,6 +205,12 @@ const PopupsAdmin = () => {
                     <Badge variant={popup.enabled ? "default" : "secondary"}>
                       {popup.enabled ? "Active" : "Disabled"}
                     </Badge>
+                    {popup.productId && (
+                      <Badge variant="outline" className="bg-purple-50 text-purple-700 border-purple-200">
+                        <Package className="w-3 h-3 mr-1" />
+                        Product {popup.productId}
+                      </Badge>
+                    )}
                   </div>
                   <div className="flex items-center gap-2">
                     <Button
@@ -231,6 +243,21 @@ const PopupsAdmin = () => {
                         onChange={(e) => onChange({ ...popup, name: e.target.value })}
                         placeholder="e.g., Welcome Offer"
                       />
+                    </FormGroup>
+
+                    <FormGroup label="Associated Product" description="Link this popup to a specific product (optional)">
+                      <select
+                        value={popup.productId || ""}
+                        onChange={(e) => onChange({ ...popup, productId: e.target.value ? parseInt(e.target.value) : undefined })}
+                        className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                      >
+                        <option value="">General Popup (Not product-specific)</option>
+                        {products.map((product) => (
+                          <option key={product.id} value={product.id}>
+                            {product.shortName} ({product.size})
+                          </option>
+                        ))}
+                      </select>
                     </FormGroup>
 
                     <FormGroup label="Trigger" description="When should this popup appear?">
