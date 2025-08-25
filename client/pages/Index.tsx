@@ -1124,7 +1124,7 @@ export default function Index() {
                         <button
                           onClick={(e) => {
                             e.stopPropagation();
-                            setSelectedProduct(product);
+                            handleProductClick(product);
                           }}
                           className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-3 rounded-xl text-sm transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2"
                         >
@@ -1214,7 +1214,7 @@ export default function Index() {
 
                     {/* Box Contents Icons - playful visual */}
                     <div className="flex items-center gap-1">
-                      <span className="text-sm lg:text-base">�������</span>
+                      <span className="text-sm lg:text-base">�����</span>
                       <span className="text-sm lg:text-base">🍫</span>
                       <span className="text-sm lg:text-base">🥨</span>
                       <span className="text-xs text-gray-500 ml-2 font-medium">
@@ -1243,7 +1243,7 @@ export default function Index() {
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
-                        setSelectedProduct(product);
+                        handleProductClick(product);
                       }}
                       className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-2.5 lg:py-3 rounded-xl text-xs lg:text-sm transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2"
                     >
