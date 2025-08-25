@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { useAdminData, useSEOData } from "@/hooks/useAdminData";
 import {
   X,
   Truck,
@@ -41,6 +42,26 @@ const calculatePricing = (salePrice: string) => {
   };
 };
 
+// Helper function to get icon component by name
+const getIconComponent = (iconName: string) => {
+  const icons: { [key: string]: any } = {
+    CheckCircle,
+    Package,
+    Gift,
+    Users,
+    Sparkles,
+    Zap,
+    ShoppingCart,
+    Truck,
+    Star,
+    ExternalLink,
+    Play,
+    Maximize2,
+    Eye,
+  };
+  return icons[iconName] || CheckCircle;
+};
+
 // Star Rating Component
 const StarRating = ({
   rating,
@@ -66,168 +87,25 @@ const StarRating = ({
   );
 };
 
-const products = [
-  {
-    id: 1,
-    name: "Gift a Snack Spread the Joy Snack Pack, Assorted College Care Package for Students, Office Party, 35 Count",
-    shortName: "Gift a Snack – Spread the Joy Snack Pack",
-    description:
-      "Spread joy with the perfect gift for adults, teens, and college students. Premium assortment of chips, crackers, cookies, and candy in beautifully branded high-end packaging.",
-    size: "35 ct",
-    price: "$22.97",
-    rating: 5,
-    reviewCount: 286,
-    image:
-      "https://cdn.builder.io/api/v1/image/assets%2F79b7dfd5cb0f4ca0b96e836c27c6ef40%2F77788b1b06194d9e9278b4a63bb3471e?format=webp&width=800",
-    walmartLink:
-      "https://www.walmart.com/ip/Gift-a-Snack-35-Count-Snacks-Box-with-Variety-Assortment-of-snack-packs-chips-variety-Crackers-Cookies-Candy/6277108895?classType=VARIANT",
-    bulletPoints: [
-      "Beautifully branded high-end packaging for an impressive gift.",
-      "Convenient individual servings for on-the-go snacking.",
-      "Includes a heartwarming greeting card for a personal touch.",
-      "Spread joy with the perfect gift for adults, teens, and college students.",
-      "Variety assortment of chips, crackers, cookies, and candy.",
-      "Honesty is our main value - some snacks may be replaced for similar or more value.",
-      "Gift a Snack - the ultimate snack box for any occasion.",
-    ],
-  },
-  {
-    id: 2,
-    name: "Gift a Snack Chip Variety Snack Box – Snack Pack Variety Box, 42 Count",
-    shortName: "Gift a Snack Chip Variety Snack Box",
-    description:
-      "Variety assortment of brands like Airheads, Cheez It, and Famous Amos. Contains 42 individually wrapped treats in high-end packaging with a greeting card.",
-    size: "42 ct",
-    price: "$23.96",
-    rating: 5,
-    reviewCount: 286,
-    image:
-      "https://cdn.builder.io/api/v1/image/assets%2F79b7dfd5cb0f4ca0b96e836c27c6ef40%2Fcd06d6ab52e341e2b57efd6b128aeeaa?format=webp&width=800",
-    walmartLink:
-      "https://www.walmart.com/ip/Gift-a-Snack-Chip-Variety-Snack-Box-Snack-Pack-Variety-Box-42-Count/5298521902?classType=VARIANT&athbdg=L1600",
-    bulletPoints: [
-      "The Gift a Snack Chip Variety Snack Box contains 42 individually wrapped treats, including chips, crackers, cookies, and candy.",
-      "Variety assortment of brands like Airheads, Cheez It, and Famous Amos.",
-      "Comes with a heartwarming greeting card and high-end packaging.",
-      "Ideal for adults, teens, and college students, and suitable for on-the-go snacking.",
-      "Some snacks may be replaced with similar or higher value items.",
-      "Perfect as a care package or a convenient snack option.",
-    ],
-  },
-  {
-    id: 3,
-    name: "Gift a Snack 52 Count Snack Box with Variety Snacks, Chips, Crackers, Cookies, Candy",
-    shortName: "Gift a Snack 52 Count Snack Box",
-    description:
-      "52-count snack box filled with a diverse variety of sweet and salty treats. Beautifully branded high-end packaging perfect for gifts and care packages.",
-    size: "52 ct",
-    price: "$31.46",
-    rating: 5,
-    reviewCount: 286,
-    image:
-      "https://cdn.builder.io/api/v1/image/assets%2F79b7dfd5cb0f4ca0b96e836c27c6ef40%2F5ff73d8278224c2ab0b862f059e3802c?format=webp&width=800",
-    walmartLink:
-      "https://www.walmart.com/ip/Gift-a-Snack-52-Count-Snack-Box-with-Variety-Snacks-Chips-Crackers-Cookies-Candy/5915077819?classType=VARIANT&athbdg=L1900",
-    bulletPoints: [
-      "Beautifully branded high-end packaging for an impressive gift.",
-      "Convenient individual servings for on-the-go snacking.",
-      "Includes a heartwarming greeting card for a personal touch.",
-      "Spread joy with the perfect gift for adults, teens, and college students.",
-      "Variety assortment of chips, crackers, cookies, and candy.",
-      "Honesty is our main value - some snacks may be replaced for similar or more value.",
-      "Gift a Snack - the ultimate snack box for any occasion.",
-      "Mouthwatering treats inside - Airheads, Cheez It, Famous Amos, and more!",
-    ],
-  },
-  {
-    id: 4,
-    name: "Ultimate Snack Box Variety Pack – 105 Count by Gift A Snack",
-    shortName: "Ultimate Snack Box – 105 Count",
-    description:
-      "105-count pack with America's favorite candies, chips, crackers, and bars. Perfectly packaged in individual servings for on-the-go ease and ideal as a gift.",
-    size: "105 ct",
-    price: "$45.97",
-    rating: 5,
-    reviewCount: 286,
-    image:
-      "https://cdn.builder.io/api/v1/image/assets%2F79b7dfd5cb0f4ca0b96e836c27c6ef40%2F936b74c9566f406ebebd96074d052d09?format=webp&width=800",
-    walmartLink:
-      "https://www.walmart.com/ip/Ultimate-Snack-Box-Variety-Pack-105-Count-by-Gift-A-Snack/14496505954?classType=VARIANT",
-    bulletPoints: [
-      "105-count pack with America's favorite candies, chips, crackers, and bars.",
-      "Perfectly packaged in individual servings for on-the-go ease.",
-      "Ideal gift for adults, teens, college students, or anyone who deserves a treat.",
-    ],
-  },
-];
-
-const features = [
-  {
-    title: "Huge Variety",
-    description: "Over 30 types of snacks",
-    icon: Package,
-  },
-  {
-    title: "Luxury Packaging",
-    description: "Perfect as a gift",
-    icon: Gift,
-  },
-  {
-    title: "For Everyone",
-    description: "Kids, students, employees",
-    icon: Users,
-  },
-  {
-    title: "Fresh & Tasty",
-    description: "Guaranteed quality",
-    icon: Sparkles,
-  },
-  {
-    title: "Easy to Order",
-    description: "Fast shipping",
-    icon: Zap,
-  },
-];
+// Static data moved to adminData.ts - now uses dynamic data from localStorage
 
 export default function Index() {
-  const [selectedProduct, setSelectedProduct] = useState<
-    (typeof products)[0] | null
-  >(null);
+  const { data: adminData, loading } = useAdminData();
+  useSEOData(); // Apply SEO meta tags
+
+  const [selectedProduct, setSelectedProduct] = useState<any>(null);
   const [showFloatingButton, setShowFloatingButton] = useState(false);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const [activePopup, setActivePopup] = useState<any>(null);
 
-  const scrollToProducts = () => {
-    document
-      .getElementById("products-section")
-      ?.scrollIntoView({ behavior: "smooth" });
-  };
+  // Shared state for DOM protection across all TikTok initialization functions
+  const domProtectionStateRef = useRef({
+    isActive: false,
+    restoreFunction: null as (() => void) | null,
+  });
 
-  const openFirstProductModal = () => {
-    setSelectedProduct(products[0]);
-  };
-
-  // Swipe to close functionality
-  const handleTouchStart = (e: React.TouchEvent) => {
-    setTouchEnd(null);
-    setTouchStart(e.targetTouches[0].clientY);
-  };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientY);
-  };
-
-  const handleTouchEnd = () => {
-    if (!touchStart || !touchEnd) return;
-
-    const distance = touchStart - touchEnd;
-    const isDownSwipe = distance < -100; // Swipe down by more than 100px
-
-    if (isDownSwipe) {
-      setSelectedProduct(null);
-    }
-  };
-
+  // All useEffect hooks must be before early returns
   useEffect(() => {
     const handleScroll = () => {
       const scrolled = window.scrollY;
@@ -241,7 +119,7 @@ export default function Index() {
 
   // Control body overflow when modal is open
   useEffect(() => {
-    if (selectedProduct) {
+    if (selectedProduct || activePopup) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "unset";
@@ -251,13 +129,7 @@ export default function Index() {
     return () => {
       document.body.style.overflow = "unset";
     };
-  }, [selectedProduct]);
-
-  // Shared state for DOM protection across all TikTok initialization functions
-  const domProtectionStateRef = useRef({
-    isActive: false,
-    restoreFunction: null as (() => void) | null,
-  });
+  }, [selectedProduct, activePopup]);
 
   // Enhanced TikTok embed initialization with comprehensive error prevention
   useEffect(() => {
@@ -352,9 +224,6 @@ export default function Index() {
           return null;
         }
       };
-
-      // Note: Removed problematic protectArrayAccess calls for read-only document properties
-      // document.forms, document.links, document.images, document.scripts are read-only getters
 
       // Add protection to Element.prototype methods if they exist
       if (typeof Element !== "undefined" && Element.prototype) {
@@ -697,10 +566,31 @@ export default function Index() {
 
                 // Ensure DOM protection is active for reinitialization
                 if (!domProtectionStateRef.current.isActive) {
+                  const createDOMProtection = () => {
+                    if (domProtectionStateRef.current.isActive) {
+                      return domProtectionStateRef.current.restoreFunction || (() => {});
+                    }
+                    // Simplified protection for reinitialization
+                    return () => {};
+                  };
                   createDOMProtection();
                 }
 
                 // Use the same safe render function for consistency
+                const safeRenderTikTok = () => {
+                  try {
+                    const windowObj = window as any;
+                    if (!windowObj.tiktokEmbed?.lib?.render) {
+                      return false;
+                    }
+                    windowObj.tiktokEmbed.lib.render();
+                    return true;
+                  } catch (error) {
+                    console.warn("TikTok render failed safely:", error);
+                    return false;
+                  }
+                };
+
                 const reinitSuccess = safeRenderTikTok();
 
                 if (reinitSuccess) {
@@ -741,6 +631,68 @@ export default function Index() {
       }
     };
   }, []);
+
+  // Show loading state while data loads
+  if (loading || !adminData) {
+    return (
+      <div className="min-h-screen bg-blue-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-logo-green mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
+  const { hero, carousel, features, products, testimonials, tiktok, cta, footer, popups } = adminData;
+
+  const scrollToProducts = () => {
+    document
+      .getElementById("products-section")
+      ?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const openFirstProductModal = () => {
+    setSelectedProduct(products[0]);
+  };
+
+  // Get product-specific popup
+  const getProductPopup = (productId: number) => {
+    return popups?.find(popup => popup.productId === productId && popup.enabled);
+  };
+
+  // Handle product card click - show promotional popup first
+  const handleProductClick = (product: any) => {
+    const productPopup = getProductPopup(product.id);
+    if (productPopup) {
+      setActivePopup(productPopup);
+    } else {
+      setSelectedProduct(product);
+    }
+  };
+
+  // Swipe to close functionality
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientY);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientY);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+
+    const distance = touchStart - touchEnd;
+    const isDownSwipe = distance < -100; // Swipe down by more than 100px
+
+    if (isDownSwipe) {
+      setSelectedProduct(null);
+    }
+  };
+
+  // TikTok useEffect hooks moved to top of component to fix hooks order
 
   return (
     <div className="min-h-screen bg-blue-50">
@@ -830,7 +782,7 @@ export default function Index() {
               <div className="flex justify-center lg:justify-start mb-4 sm:mb-6">
                 <div className="bg-white/80 backdrop-blur-sm p-3 sm:p-5 rounded-2xl shadow-xl border border-gray-200/50 inline-block">
                   <img
-                    src="https://cdn.builder.io/api/v1/image/assets%2F79b7dfd5cb0f4ca0b96e836c27c6ef40%2Fcd932fcd18414ba798762d622c2b825c?format=webp&width=300&quality=90"
+                    src={hero.logo}
                     alt="Gift A Snack Premium Snack Box Company Logo - Quality Snack Boxes for Gifts"
                     className="h-16 sm:h-20 lg:h-28 w-auto"
                     loading="eager"
@@ -840,75 +792,87 @@ export default function Index() {
                 </div>
               </div>
 
-              <div className="inline-flex items-center gap-2 bg-gradient-to-r from-logo-green/15 to-green-400/15 backdrop-blur-sm text-logo-green px-4 py-2 rounded-full text-xs sm:text-sm font-semibold mb-4 sm:mb-6 border border-logo-green/20">
-                <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4" />
-                <span className="hidden sm:inline">
-                  Premium Quality Guaranteed
-                </span>
-                <span className="sm:hidden">Premium Quality</span>
-              </div>
+              {hero.badge.text && (
+                <div className="inline-flex items-center gap-2 bg-gradient-to-r from-logo-green/15 to-green-400/15 backdrop-blur-sm text-logo-green px-4 py-2 rounded-full text-xs sm:text-sm font-semibold mb-4 sm:mb-6 border border-logo-green/20">
+                  {(() => {
+                    const IconComponent = getIconComponent(hero.badge.icon);
+                    return <IconComponent className="w-3 h-3 sm:w-4 sm:h-4" />;
+                  })()}
+                  <span className="hidden sm:inline">
+                    {hero.badge.text}
+                  </span>
+                  <span className="sm:hidden">{hero.badge.text.split(' ').slice(0, 2).join(' ')}</span>
+                </div>
+              )}
 
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-heading-red mb-4 sm:mb-6 leading-tight tracking-tight">
-                <span className="block">Premium Snack Boxes</span>
+                <span className="block">{hero.title.line1}</span>
                 <span className="block text-snack-dark-blue">
-                  – Gift A Snack
+                  {hero.title.line2}
                 </span>
               </h1>
 
               <p className="text-base sm:text-lg text-snack-dark-blue/80 mb-6 sm:mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed">
                 <span className="hidden sm:inline">
-                  Premium assortment of delicious snacks, beautifully packaged.
-                  Perfect for gifts, office treats, and special occasions.
+                  {hero.description.desktop}
                 </span>
                 <span className="sm:hidden">
-                  Premium snack boxes perfect for gifts and special occasions.
+                  {hero.description.mobile}
                 </span>
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 sm:gap-4 justify-center lg:justify-start mb-6 sm:mb-8">
-                <button
-                  onClick={scrollToProducts}
-                  className="group relative bg-gradient-to-r from-logo-green to-green-500 hover:from-green-500 hover:to-emerald-500 text-white font-black px-8 sm:px-10 py-5 sm:py-6 rounded-2xl text-lg sm:text-xl transition-all duration-300 flex items-center justify-center gap-3 min-h-[64px] sm:min-h-[72px] touch-manipulation tap-highlight-none focus-visible-ring shadow-xl hover:shadow-2xl transform hover:scale-105 overflow-hidden"
-                  style={{
-                    filter: "drop-shadow(0 0 20px rgba(155, 217, 91, 0.4))",
-                  }}
-                >
-                  {/* Glow effect */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-logo-green/50 to-green-400/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl"></div>
-                  <Package className="w-6 h-6 relative z-10" />
-                  <span className="relative z-10">Shop Now</span>
-                  {/* Shine effect */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
-                </button>
-                <button
-                  onClick={() =>
-                    document
-                      .getElementById("why-choose-section")
-                      ?.scrollIntoView({ behavior: "smooth" })
-                  }
-                  className="border-2 border-logo-green text-logo-green hover:bg-logo-green hover:text-white font-bold px-8 sm:px-10 py-5 sm:py-6 rounded-2xl text-lg sm:text-xl transition-all duration-300 min-h-[64px] sm:min-h-[72px] touch-manipulation tap-highlight-none focus-visible-ring hover:shadow-lg transform hover:scale-105"
-                >
-                  Learn More
-                </button>
+                {hero.buttons.primary.text && (
+                  <button
+                    onClick={() => {
+                      if (hero.buttons.primary.action === 'scrollToProducts') {
+                        scrollToProducts();
+                      } else if (hero.buttons.primary.action.startsWith('scroll')) {
+                        const elementId = hero.buttons.primary.action.replace('scrollTo', '').toLowerCase() + '-section';
+                        document.getElementById(elementId)?.scrollIntoView({ behavior: 'smooth' });
+                      }
+                    }}
+                    className="group relative bg-gradient-to-r from-logo-green to-green-500 hover:from-green-500 hover:to-emerald-500 text-white font-black px-8 sm:px-10 py-5 sm:py-6 rounded-2xl text-lg sm:text-xl transition-all duration-300 flex items-center justify-center gap-3 min-h-[64px] sm:min-h-[72px] touch-manipulation tap-highlight-none focus-visible-ring shadow-xl hover:shadow-2xl transform hover:scale-105 overflow-hidden"
+                    style={{
+                      filter: "drop-shadow(0 0 20px rgba(155, 217, 91, 0.4))",
+                    }}
+                  >
+                    {/* Glow effect */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-logo-green/50 to-green-400/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl"></div>
+                    <Package className="w-6 h-6 relative z-10" />
+                    <span className="relative z-10">{hero.buttons.primary.text}</span>
+                    {/* Shine effect */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+                  </button>
+                )}
+                {hero.buttons.secondary.text && (
+                  <button
+                    onClick={() => {
+                      if (hero.buttons.secondary.action === 'scrollToFeatures') {
+                        document.getElementById("why-choose-section")?.scrollIntoView({ behavior: "smooth" });
+                      } else if (hero.buttons.secondary.action.startsWith('scroll')) {
+                        const elementId = hero.buttons.secondary.action.replace('scrollTo', '').toLowerCase() + '-section';
+                        document.getElementById(elementId)?.scrollIntoView({ behavior: 'smooth' });
+                      }
+                    }}
+                    className="border-2 border-logo-green text-logo-green hover:bg-logo-green hover:text-white font-bold px-8 sm:px-10 py-5 sm:py-6 rounded-2xl text-lg sm:text-xl transition-all duration-300 min-h-[64px] sm:min-h-[72px] touch-manipulation tap-highlight-none focus-visible-ring hover:shadow-lg transform hover:scale-105"
+                  >
+                    {hero.buttons.secondary.text}
+                  </button>
+                )}
               </div>
 
               {/* Enhanced Trust Indicators */}
               <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-6 text-sm text-snack-dark-blue/70">
-                <div className="flex items-center gap-2 bg-white/60 backdrop-blur-sm px-3 py-2 rounded-full">
-                  <CheckCircle className="w-4 h-4 text-logo-green" />
-                  <span className="hidden sm:inline font-medium">
-                    30+ Snack Varieties
-                  </span>
-                  <span className="sm:hidden font-medium">30+ Varieties</span>
-                </div>
-                <div className="flex items-center gap-2 bg-white/60 backdrop-blur-sm px-3 py-2 rounded-full">
-                  <CheckCircle className="w-4 h-4 text-logo-green" />
-                  <span className="font-medium">Fast Shipping</span>
-                </div>
-                <div className="flex items-center gap-2 bg-white/60 backdrop-blur-sm px-3 py-2 rounded-full">
-                  <CheckCircle className="w-4 h-4 text-logo-green" />
-                  <span className="font-medium">Gift Ready</span>
-                </div>
+                {hero.trustIndicators.map((indicator, index) => {
+                  const IconComponent = getIconComponent(indicator.icon);
+                  return (
+                    <div key={index} className="flex items-center gap-2 bg-white/60 backdrop-blur-sm px-3 py-2 rounded-full">
+                      <IconComponent className="w-4 h-4 text-logo-green" />
+                      <span className="font-medium">{indicator.text}</span>
+                    </div>
+                  );
+                })}
               </div>
             </div>
 
@@ -922,7 +886,7 @@ export default function Index() {
                 {/* Main image container with overlap effect */}
                 <div className="relative bg-white/90 backdrop-blur-sm p-4 rounded-3xl shadow-2xl border border-white/50">
                   <img
-                    src="https://cdn.builder.io/api/v1/image/assets%2Ffc09862a9f0941d4aeda13a8cb2480bc%2F9a927196010f464595d03440e3666d58?format=webp&width=700&quality=90"
+                    src={hero.heroImage}
                     alt="Gift A Snack Premium Snack Box Collection with Chips Crackers Cookies and Candy Variety Packs for Gifts and Care Packages"
                     className="relative z-10 w-full h-auto rounded-2xl transform transition-transform duration-500 hover:scale-105"
                     loading="eager"
@@ -961,18 +925,17 @@ export default function Index() {
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-12 sm:mb-16">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-heading-red mb-4 sm:mb-6 tracking-tight">
-              Why Choose Gift A Snack Box?
+              {features.title}
             </h2>
             <p className="text-lg text-snack-dark-blue/80 max-w-2xl mx-auto leading-relaxed">
-              Discover what makes our snack boxes the perfect choice for every
-              occasion and celebration
+              {features.description}
             </p>
           </div>
 
           {/* Single Row Layout for All Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 lg:gap-8 max-w-6xl mx-auto">
-            {features.map((feature, index) => {
-              const IconComponent = feature.icon;
+            {features.items.map((feature, index) => {
+              const IconComponent = getIconComponent(feature.icon);
               const colors = [
                 "from-red-500 to-pink-500",
                 "from-blue-500 to-cyan-500",
@@ -993,12 +956,12 @@ export default function Index() {
                   <div className="relative mb-6">
                     {/* Outer glow ring */}
                     <div
-                      className={`absolute inset-0 w-24 h-24 mx-auto bg-gradient-to-br ${colors[index]} rounded-full blur-lg opacity-30 group-hover:opacity-50 transition-opacity duration-300`}
+                      className={`absolute inset-0 w-24 h-24 mx-auto bg-gradient-to-br ${colors[index % colors.length]} rounded-full blur-lg opacity-30 group-hover:opacity-50 transition-opacity duration-300`}
                     ></div>
 
                     {/* Main circular icon */}
                     <div
-                      className={`relative w-24 h-24 mx-auto bg-gradient-to-br ${colors[index]} rounded-full flex items-center justify-center shadow-xl group-hover:shadow-2xl transition-all duration-300 transform group-hover:rotate-6`}
+                      className={`relative w-24 h-24 mx-auto bg-gradient-to-br ${colors[index % colors.length]} rounded-full flex items-center justify-center shadow-xl group-hover:shadow-2xl transition-all duration-300 transform group-hover:rotate-6`}
                     >
                       <IconComponent className="w-10 h-10 text-white drop-shadow-lg" />
 
@@ -1023,7 +986,7 @@ export default function Index() {
 
                   {/* Bottom accent line */}
                   <div
-                    className={`w-12 h-1 bg-gradient-to-r ${colors[index]} mx-auto mt-4 rounded-full opacity-60 group-hover:opacity-100 group-hover:w-16 transition-all duration-300`}
+                    className={`w-12 h-1 bg-gradient-to-r ${colors[index % colors.length]} mx-auto mt-4 rounded-full opacity-60 group-hover:opacity-100 group-hover:w-16 transition-all duration-300`}
                   ></div>
                 </div>
               );
@@ -1132,7 +1095,7 @@ export default function Index() {
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-1.5">
                             <span className="text-base">🍪</span>
-                            <span className="text-base">🍫</span>
+                            <span className="text-base">��</span>
                             <span className="text-base">🥨</span>
                             <span className="text-xs text-gray-500 ml-1 font-medium">
                               {product.size}
@@ -1161,7 +1124,7 @@ export default function Index() {
                         <button
                           onClick={(e) => {
                             e.stopPropagation();
-                            setSelectedProduct(product);
+                            handleProductClick(product);
                           }}
                           className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-3 rounded-xl text-sm transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2"
                         >
@@ -1251,7 +1214,7 @@ export default function Index() {
 
                     {/* Box Contents Icons - playful visual */}
                     <div className="flex items-center gap-1">
-                      <span className="text-sm lg:text-base">���</span>
+                      <span className="text-sm lg:text-base">�����</span>
                       <span className="text-sm lg:text-base">🍫</span>
                       <span className="text-sm lg:text-base">🥨</span>
                       <span className="text-xs text-gray-500 ml-2 font-medium">
@@ -1280,7 +1243,7 @@ export default function Index() {
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
-                        setSelectedProduct(product);
+                        handleProductClick(product);
                       }}
                       className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-2.5 lg:py-3 rounded-xl text-xs lg:text-sm transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2"
                     >
@@ -1351,7 +1314,7 @@ export default function Index() {
               <div
                 className="tiktok-embed-container mb-8 lg:mb-0"
                 dangerouslySetInnerHTML={{
-                  __html: `<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@nut.cravings/video/7522097145223187725" data-video-id="7522097145223187725" style="max-width: 605px;min-width: 325px;"> <section> <a target="_blank" title="@nut.cravings" href="https://www.tiktok.com/@nut.cravings?refer=embed">@nut.cravings</a> Gift A Snack - Assorted Healthy Treats, Granola Bars, Chips, Candies &amp; More | Perfect for Gifting &amp; Care Packages <a title="giftasnack" target="_blank" href="https://www.tiktok.com/tag/giftasnack?refer=embed">#GiftASnack</a> <a title="snackbox" target="_blank" href="https://www.tiktok.com/tag/snackbox?refer=embed">#SnackBox</a> <a title="healthytreats" target="_blank" href="https://www.tiktok.com/tag/healthytreats?refer=embed">#HealthyTreats</a> <a title="carepackage" target="_blank" href="https://www.tiktok.com/tag/carepackage?refer=embed">#CarePackage</a> <a title="giftboxideas" target="_blank" href="https://www.tiktok.com/tag/giftboxideas?refer=embed">#GiftBoxIdeas</a> <a title="snacklovers" target="_blank" href="https://www.tiktok.com/tag/snacklovers?refer=embed">#SnackLovers</a> <a title="granolabars" target="_blank" href="https://www.tiktok.com/tag/granolabars?refer=embed">#GranolaBars</a> <a title="chipsandcandy" target="_blank" href="https://www.tiktok.com/tag/chipsandcandy?refer=embed">#ChipsAndCandy</a> <a title="snacktime" target="_blank" href="https://www.tiktok.com/tag/snacktime?refer=embed">#SnackTime</a> <a title="foodgiftbox" target="_blank" href="https://www.tiktok.com/tag/foodgiftbox?refer=embed">#FoodGiftBox</a> <a title="assortedsnacks" target="_blank" href="https://www.tiktok.com/tag/assortedsnacks?refer=embed">#AssortedSnacks</a> <a title="giftingmadeeasy" target="_blank" href="https://www.tiktok.com/tag/giftingmadeeasy?refer=embed">#GiftingMadeEasy</a> <a title="snacksurprise" target="_blank" href="https://www.tiktok.com/tag/snacksurprise?refer=embed">#SnackSurprise</a> <a title="collegecarepackage" target="_blank" href="https://www.tiktok.com/tag/collegecarepackage?refer=embed">#CollegeCarePackage</a> <a title="corporategifts" target="_blank" href="https://www.tiktok.com/tag/corporategifts?refer=embed">#CorporateGifts</a> <a title="snackaddict" target="_blank" href="https://www.tiktok.com/tag/snackaddict?refer=embed">#SnackAddict</a> <a target="_blank" title="♬ Product introduction, commercials, information, summer(1284254) - yutaka.T" href="https://www.tiktok.com/music/Product-introduction-commercials-information-summer-1284254-7133249539493857281?refer=embed">♬ Product introduction, commercials, information, summer(1284254) - yutaka.T</a> </section> </blockquote>`,
+                  __html: `<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@nut.cravings/video/7522097145223187725" data-video-id="7522097145223187725" style="max-width: 605px;min-width: 325px;"> <section> <a target="_blank" title="@nut.cravings" href="https://www.tiktok.com/@nut.cravings?refer=embed">@nut.cravings</a> Gift A Snack - Assorted Healthy Treats, Granola Bars, Chips, Candies &amp; More | Perfect for Gifting &amp; Care Packages <a title="giftasnack" target="_blank" href="https://www.tiktok.com/tag/giftasnack?refer=embed">#GiftASnack</a> <a title="snackbox" target="_blank" href="https://www.tiktok.com/tag/snackbox?refer=embed">#SnackBox</a> <a title="healthytreats" target="_blank" href="https://www.tiktok.com/tag/healthytreats?refer=embed">#HealthyTreats</a> <a title="carepackage" target="_blank" href="https://www.tiktok.com/tag/carepackage?refer=embed">#CarePackage</a> <a title="giftboxideas" target="_blank" href="https://www.tiktok.com/tag/giftboxideas?refer=embed">#GiftBoxIdeas</a> <a title="snacklovers" target="_blank" href="https://www.tiktok.com/tag/snacklovers?refer=embed">#SnackLovers</a> <a title="granolabars" target="_blank" href="https://www.tiktok.com/tag/granolabars?refer=embed">#GranolaBars</a> <a title="chipsandcandy" target="_blank" href="https://www.tiktok.com/tag/chipsandcandy?refer=embed">#ChipsAndCandy</a> <a title="snacktime" target="_blank" href="https://www.tiktok.com/tag/snacktime?refer=embed">#SnackTime</a> <a title="foodgiftbox" target="_blank" href="https://www.tiktok.com/tag/foodgiftbox?refer=embed">#FoodGiftBox</a> <a title="assortedsnacks" target="_blank" href="https://www.tiktok.com/tag/assortedsnacks?refer=embed">#AssortedSnacks</a> <a title="giftingmadeeasy" target="_blank" href="https://www.tiktok.com/tag/giftingmadeeasy?refer=embed">#GiftingMadeEasy</a> <a title="snacksurprise" target="_blank" href="https://www.tiktok.com/tag/snacksurprise?refer=embed">#SnackSurprise</a> <a title="collegecarepackage" target="_blank" href="https://www.tiktok.com/tag/collegecarepackage?refer=embed">#CollegeCarePackage</a> <a title="corporategifts" target="_blank" href="https://www.tiktok.com/tag/corporategifts?refer=embed">#CorporateGifts</a> <a title="snackaddict" target="_blank" href="https://www.tiktok.com/tag/snackaddict?refer=embed">#SnackAddict</a> <a target="_blank" title="��� Product introduction, commercials, information, summer(1284254) - yutaka.T" href="https://www.tiktok.com/music/Product-introduction-commercials-information-summer-1284254-7133249539493857281?refer=embed">♬ Product introduction, commercials, information, summer(1284254) - yutaka.T</a> </section> </blockquote>`,
                 }}
               />
 
@@ -1381,50 +1344,56 @@ export default function Index() {
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <div className="card-enhanced p-4 sm:p-8 bg-white/80 backdrop-blur-sm">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-heading-red mb-3 sm:mb-4 tracking-tight">
-              Ready to Experience the Tastiest Gift A Snack Box?
+              {cta.title}
             </h2>
             <p className="text-base text-snack-dark-blue/80 mb-4 sm:mb-6 max-w-2xl mx-auto leading-relaxed">
-              Join thousands of satisfied customers. Choose your perfect size
-              and order now from Walmart.
+              {cta.description}
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center mb-4 sm:mb-6">
-              <button
-                onClick={scrollToProducts}
-                className="bg-logo-green hover:bg-green-500 text-white font-bold px-6 sm:px-8 py-4 sm:py-3 rounded-xl text-base button-enhanced flex items-center justify-center gap-2 min-h-[56px] sm:min-h-[48px]"
-              >
-                <ShoppingCart className="w-5 h-5" />
-                Order Now
-              </button>
-              <button
-                onClick={() =>
-                  document
-                    .getElementById("testimonials-section")
-                    ?.scrollIntoView({ behavior: "smooth" })
-                }
-                className="border-2 border-logo-green text-logo-green hover:bg-logo-green hover:text-white font-bold px-6 sm:px-8 py-4 sm:py-3 rounded-xl text-base transition-all duration-300 min-h-[56px] sm:min-h-[48px]"
-              >
-                Read Reviews
-              </button>
+              {cta.buttons.primary.text && (
+                <button
+                  onClick={() => {
+                    if (cta.buttons.primary.action === 'scrollToProducts') {
+                      scrollToProducts();
+                    } else if (cta.buttons.primary.action.startsWith('scroll')) {
+                      const elementId = cta.buttons.primary.action.replace('scrollTo', '').toLowerCase() + '-section';
+                      document.getElementById(elementId)?.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
+                  className="bg-logo-green hover:bg-green-500 text-white font-bold px-6 sm:px-8 py-4 sm:py-3 rounded-xl text-base button-enhanced flex items-center justify-center gap-2 min-h-[56px] sm:min-h-[48px]"
+                >
+                  <ShoppingCart className="w-5 h-5" />
+                  {cta.buttons.primary.text}
+                </button>
+              )}
+              {cta.buttons.secondary.text && (
+                <button
+                  onClick={() => {
+                    if (cta.buttons.secondary.action === 'scrollToTestimonials') {
+                      document.getElementById("testimonials-section")?.scrollIntoView({ behavior: "smooth" });
+                    } else if (cta.buttons.secondary.action.startsWith('scroll')) {
+                      const elementId = cta.buttons.secondary.action.replace('scrollTo', '').toLowerCase() + '-section';
+                      document.getElementById(elementId)?.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
+                  className="border-2 border-logo-green text-logo-green hover:bg-logo-green hover:text-white font-bold px-6 sm:px-8 py-4 sm:py-3 rounded-xl text-base transition-all duration-300 min-h-[56px] sm:min-h-[48px]"
+                >
+                  {cta.buttons.secondary.text}
+                </button>
+              )}
             </div>
 
             {/* Trust Indicators */}
             <div className="flex flex-wrap items-center justify-center gap-4 text-xs text-snack-dark-blue/60">
-              <div className="flex items-center gap-1.5">
-                <CheckCircle className="w-3 h-3 text-logo-green" />
-                30+ Premium Snacks
-              </div>
-              <div className="flex items-center gap-1.5">
-                <CheckCircle className="w-3 h-3 text-logo-green" />
-                Gift-Ready Packaging
-              </div>
-              <div className="flex items-center gap-1.5">
-                <CheckCircle className="w-3 h-3 text-logo-green" />
-                Fast US Shipping
-              </div>
-              <div className="flex items-center gap-1.5">
-                <CheckCircle className="w-3 h-3 text-logo-green" />
-                Satisfaction Guaranteed
-              </div>
+              {cta.trustIndicators.map((indicator, index) => {
+                const IconComponent = getIconComponent(indicator.icon);
+                return (
+                  <div key={index} className="flex items-center gap-1.5">
+                    <IconComponent className="w-3 h-3 text-logo-green" />
+                    {indicator.text}
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -1434,7 +1403,7 @@ export default function Index() {
       <section className="py-12 px-4 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
         {/* Decorative snack elements */}
         <div className="absolute top-8 left-16 text-2xl opacity-10 animate-pulse">
-          🍪
+          ����
         </div>
         <div className="absolute bottom-8 right-20 text-2xl opacity-10 animate-pulse delay-1000">
           🍫
@@ -1509,132 +1478,125 @@ export default function Index() {
             {/* Logo and Description */}
             <div className="text-center md:text-left">
               <img
-                src="https://cdn.builder.io/api/v1/image/assets%2F79b7dfd5cb0f4ca0b96e836c27c6ef40%2Fcd932fcd18414ba798762d622c2b825c?format=webp&width=240&quality=90"
+                src={footer.logo}
                 alt="Gift A Snack Premium Snack Box Company Logo - Quality Snack Boxes for Gifts"
                 className="h-20 w-auto mx-auto md:mx-0 mb-3 filter brightness-0 invert"
                 loading="lazy"
                 decoding="async"
               />
               <p className="text-gray-300 text-sm">
-                Premium snack boxes perfect for gifts and special occasions.
+                {footer.description}
               </p>
             </div>
 
             {/* Quick Links */}
             <div className="text-center">
               <div className="flex flex-wrap justify-center gap-4">
-                <a
-                  href="#"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    window.scrollTo({ top: 0, behavior: "smooth" });
-                  }}
-                  className="text-gray-300 hover:text-logo-green transition-colors duration-300 text-sm font-medium cursor-pointer"
-                >
-                  Home
-                </a>
-                <a
-                  href="#products-section"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    document
-                      .getElementById("products-section")
-                      ?.scrollIntoView({ behavior: "smooth" });
-                  }}
-                  className="text-gray-300 hover:text-logo-green transition-colors duration-300 text-sm font-medium cursor-pointer"
-                >
-                  Products
-                </a>
-                <a
-                  href="#testimonials-section"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    document
-                      .getElementById("testimonials-section")
-                      ?.scrollIntoView({ behavior: "smooth" });
-                  }}
-                  className="text-gray-300 hover:text-logo-green transition-colors duration-300 text-sm font-medium cursor-pointer"
-                >
-                  Testimonials
-                </a>
-                <a
-                  href="#why-choose-section"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    document
-                      .getElementById("why-choose-section")
-                      ?.scrollIntoView({ behavior: "smooth" });
-                  }}
-                  className="text-gray-300 hover:text-logo-green transition-colors duration-300 text-sm font-medium cursor-pointer"
-                >
-                  Why Choose Us
-                </a>
+                {footer.quickLinks.map((link, index) => (
+                  <a
+                    key={index}
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      if (link.action === 'scrollToTop') {
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+                      } else if (link.action === 'scrollToProducts') {
+                        document.getElementById("products-section")?.scrollIntoView({ behavior: "smooth" });
+                      } else if (link.action === 'scrollToTestimonials') {
+                        document.getElementById("testimonials-section")?.scrollIntoView({ behavior: "smooth" });
+                      } else if (link.action === 'scrollToFeatures') {
+                        document.getElementById("why-choose-section")?.scrollIntoView({ behavior: "smooth" });
+                      } else if (link.action === 'scrollToTikTok') {
+                        document.querySelector(".tiktok-section")?.scrollIntoView({ behavior: "smooth" });
+                      }
+                    }}
+                    className="text-gray-300 hover:text-logo-green transition-colors duration-300 text-sm font-medium cursor-pointer"
+                  >
+                    {link.text}
+                  </a>
+                ))}
               </div>
             </div>
 
             {/* Social Media Icons */}
             <div className="text-center md:text-right">
               <div className="flex justify-center md:justify-end gap-3">
-                <a
-                  href="https://tiktok.com/@nut.cravings"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 bg-gradient-to-br from-black to-gray-800 rounded-full flex items-center justify-center text-white hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-xl hover:from-pink-500 hover:to-red-500"
-                  aria-label="Follow us on TikTok"
-                >
-                  <svg
-                    className="w-5 h-5"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-.88-.05A6.33 6.33 0 0 0 5.16 20.5a6.34 6.34 0 0 0 10.86-4.43V7.83a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.26z" />
-                  </svg>
-                </a>
-                <a
-                  href="#"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 bg-gradient-to-br from-black to-gray-800 rounded-full flex items-center justify-center text-white hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-xl hover:from-pink-500 hover:to-purple-500"
-                  aria-label="Follow us on Instagram"
-                >
-                  <svg
-                    className="w-5 h-5"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-                  </svg>
-                </a>
-                <a
-                  href="#"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 bg-gradient-to-br from-black to-gray-800 rounded-full flex items-center justify-center text-white hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-xl hover:from-blue-500 hover:to-blue-600"
-                  aria-label="Follow us on Facebook"
-                >
-                  <svg
-                    className="w-5 h-5"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-                  </svg>
-                </a>
-                <a
-                  href="#"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 bg-gradient-to-br from-black to-gray-800 rounded-full flex items-center justify-center text-white hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-xl hover:from-red-500 hover:to-red-600"
-                  aria-label="Subscribe to our YouTube"
-                >
-                  <svg
-                    className="w-5 h-5"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
-                  </svg>
-                </a>
+                {footer.socialMedia.map((social, index) => {
+                  const getSocialIcon = (platform: string) => {
+                    switch (platform.toLowerCase()) {
+                      case 'tiktok':
+                        return (
+                          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-.88-.05A6.33 6.33 0 0 0 5.16 20.5a6.34 6.34 0 0 0 10.86-4.43V7.83a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.26z" />
+                          </svg>
+                        );
+                      case 'instagram':
+                        return (
+                          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                          </svg>
+                        );
+                      case 'facebook':
+                        return (
+                          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                          </svg>
+                        );
+                      case 'youtube':
+                        return (
+                          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                          </svg>
+                        );
+                      case 'twitter':
+                        return (
+                          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
+                          </svg>
+                        );
+                      case 'linkedin':
+                        return (
+                          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                          </svg>
+                        );
+                      default:
+                        return <span className="text-xs">{platform.charAt(0)}</span>;
+                    }
+                  };
+
+                  const getHoverColors = (platform: string) => {
+                    switch (platform.toLowerCase()) {
+                      case 'tiktok':
+                        return 'hover:from-pink-500 hover:to-red-500';
+                      case 'instagram':
+                        return 'hover:from-pink-500 hover:to-purple-500';
+                      case 'facebook':
+                        return 'hover:from-blue-500 hover:to-blue-600';
+                      case 'youtube':
+                        return 'hover:from-red-500 hover:to-red-600';
+                      case 'twitter':
+                        return 'hover:from-blue-400 hover:to-blue-500';
+                      case 'linkedin':
+                        return 'hover:from-blue-600 hover:to-blue-700';
+                      default:
+                        return 'hover:from-gray-500 hover:to-gray-600';
+                    }
+                  };
+
+                  return (
+                    <a
+                      key={index}
+                      href={social.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`w-10 h-10 bg-gradient-to-br from-black to-gray-800 rounded-full flex items-center justify-center text-white hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-xl ${getHoverColors(social.platform)}`}
+                      aria-label={`Follow us on ${social.platform}`}
+                    >
+                      {getSocialIcon(social.platform)}
+                    </a>
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -1691,6 +1653,95 @@ export default function Index() {
           {/* Shine effect on hover */}
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700 rounded-2xl"></div>
         </button>
+      )}
+
+      {/* Promotional Popup */}
+      {activePopup && (
+        <>
+          {/* Modal Backdrop with Blur Effect */}
+          <div
+            className="fixed inset-0 bg-black/60 z-50"
+            style={{ backdropFilter: "blur(5px)" }}
+            onClick={() => setActivePopup(null)}
+          ></div>
+
+          {/* Modal Container */}
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 lg:p-8">
+            <div
+              className="bg-white w-full sm:w-[90%] sm:max-w-lg lg:max-w-2xl shadow-2xl rounded-2xl sm:rounded-3xl relative overflow-hidden max-h-[90vh]"
+              style={{
+                animation: "modalSlideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
+              }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Close Button */}
+              <button
+                onClick={() => setActivePopup(null)}
+                className="absolute top-4 right-4 z-30 w-10 h-10 sm:w-12 sm:h-12 bg-white/95 backdrop-blur-sm hover:bg-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-200 group border border-gray-200"
+              >
+                <X className="w-5 h-5 sm:w-6 sm:h-6 text-gray-700 group-hover:text-gray-900 group-hover:scale-110 transition-all" />
+              </button>
+
+              <div className="p-6 sm:p-8">
+                {/* Popup Image */}
+                {activePopup.image && (
+                  <div className="mb-6 text-center">
+                    <img
+                      src={activePopup.image}
+                      alt={activePopup.title}
+                      className="w-full max-w-xs mx-auto h-48 object-contain rounded-lg bg-gray-50 p-2"
+                    />
+                  </div>
+                )}
+
+                {/* Popup Title */}
+                {activePopup.title && (
+                  <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 text-center">
+                    {activePopup.title}
+                  </h2>
+                )}
+
+                {/* Popup Content */}
+                {activePopup.content && (
+                  <p className="text-gray-700 mb-6 text-center leading-relaxed text-base sm:text-lg">
+                    {activePopup.content}
+                  </p>
+                )}
+
+                {/* Action Buttons */}
+                <div className="space-y-3">
+                  {/* Primary CTA Button */}
+                  {activePopup.buttonText && activePopup.buttonLink && (
+                    <a
+                      href={activePopup.buttonLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-4 text-center rounded-xl text-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-3"
+                    >
+                      <ShoppingCart className="w-5 h-5" />
+                      {activePopup.buttonText}
+                    </a>
+                  )}
+
+                  {/* View Details Button */}
+                  <button
+                    onClick={() => {
+                      const product = products.find(p => p.id === activePopup.productId);
+                      if (product) {
+                        setActivePopup(null);
+                        setSelectedProduct(product);
+                      }
+                    }}
+                    className="w-full border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold py-3 text-center rounded-xl text-base transition-all duration-300 flex items-center justify-center gap-2"
+                  >
+                    <Eye className="w-4 h-4" />
+                    View Full Details
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </>
       )}
 
       {/* Restructured Modal - 40/60 Desktop Layout */}

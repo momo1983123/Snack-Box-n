@@ -9,6 +9,18 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import ProductPage from "./pages/ProductPage";
 import NotFound from "./pages/NotFound";
+import AdminLayout from "./pages/admin/AdminLayout";
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import HeroAdmin from "./pages/admin/HeroAdmin";
+import CarouselAdmin from "./pages/admin/CarouselAdmin";
+import FeaturesAdmin from "./pages/admin/FeaturesAdmin";
+import ProductsAdmin from "./pages/admin/ProductsAdmin";
+import TestimonialsAdmin from "./pages/admin/TestimonialsAdmin";
+import TikTokAdmin from "./pages/admin/TikTokAdmin";
+import CTAAdmin from "./pages/admin/CTAAdmin";
+import SEOAdmin from "./pages/admin/SEOAdmin";
+import PopupsAdmin from "./pages/admin/PopupsAdmin";
+import FooterAdmin from "./pages/admin/FooterAdmin";
 import { useEffect } from "react";
 
 const queryClient = new QueryClient();
@@ -128,6 +140,22 @@ const App = () => {
               path="/ultimate-snack-box-105-count"
               element={<ProductPage />}
             />
+
+            {/* Admin Routes */}
+            <Route path="/admin" element={<AdminLayout />}>
+              <Route index element={<AdminDashboard />} />
+              <Route path="hero" element={<HeroAdmin />} />
+              <Route path="carousel" element={<CarouselAdmin />} />
+              <Route path="features" element={<FeaturesAdmin />} />
+              <Route path="products" element={<ProductsAdmin />} />
+              <Route path="testimonials" element={<TestimonialsAdmin />} />
+              <Route path="tiktok" element={<TikTokAdmin />} />
+              <Route path="cta" element={<CTAAdmin />} />
+              <Route path="seo" element={<SEOAdmin />} />
+              <Route path="popups" element={<PopupsAdmin />} />
+              <Route path="footer" element={<FooterAdmin />} />
+            </Route>
+
             <Route path="/:slug" element={<ProductPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
