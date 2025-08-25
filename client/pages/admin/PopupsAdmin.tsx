@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
 import { Badge } from "@/components/ui/badge";
-import { Eye, MessageCircle, ExternalLink } from "lucide-react";
+import { Eye, MessageCircle, ExternalLink, Package } from "lucide-react";
 
 type PopupItem = AdminData["popups"][0];
 
@@ -20,12 +20,14 @@ const PopupsAdmin = () => {
   const [data, setData] = useState<AdminData["popups"]>([]);
   const [saving, setSaving] = useState(false);
   const [originalData, setOriginalData] = useState<AdminData["popups"]>([]);
+  const [products, setProducts] = useState<AdminData["products"]>([]);
   const [previewPopup, setPreviewPopup] = useState<PopupItem | null>(null);
 
   useEffect(() => {
     const adminData = getAdminData();
     setData(adminData.popups);
     setOriginalData(adminData.popups);
+    setProducts(adminData.products);
   }, []);
 
   const handleSave = async () => {
@@ -48,13 +50,14 @@ const PopupsAdmin = () => {
   const createNewPopup = (): PopupItem => ({
     id: generateId(),
     name: `Popup ${data.length + 1}`,
-    trigger: "page-load",
+    trigger: "button-click",
     title: "",
     content: "",
     buttonText: "",
     buttonLink: "",
     image: "",
     enabled: false,
+    productId: undefined,
   });
 
   const triggerOptions = [
