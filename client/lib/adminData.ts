@@ -243,6 +243,7 @@ const defaultAdminData: AdminData = {
       reviewCount: 286,
       image: "https://cdn.builder.io/api/v1/image/assets%2F79b7dfd5cb0f4ca0b96e836c27c6ef40%2F77788b1b06194d9e9278b4a63bb3471e?format=webp&width=800",
       walmartLink: "https://www.walmart.com/ip/Gift-a-Snack-35-Count-Snacks-Box-with-Variety-Assortment-of-snack-packs-chips-variety-Crackers-Cookies-Candy/6277108895?classType=VARIANT",
+      tags: ["Starter Pack"],
       bulletPoints: [
         "Beautifully branded high-end packaging for an impressive gift.",
         "Convenient individual servings for on-the-go snacking.",
@@ -264,6 +265,7 @@ const defaultAdminData: AdminData = {
       reviewCount: 286,
       image: "https://cdn.builder.io/api/v1/image/assets%2F79b7dfd5cb0f4ca0b96e836c27c6ef40%2Fcd06d6ab52e341e2b57efd6b128aeeaa?format=webp&width=800",
       walmartLink: "https://www.walmart.com/ip/Gift-a-Snack-Chip-Variety-Snack-Box-Snack-Pack-Variety-Box-42-Count/5298521902?classType=VARIANT&athbdg=L1600",
+      tags: ["Popular"],
       bulletPoints: [
         "The Gift a Snack Chip Variety Snack Box contains 42 individually wrapped treats, including chips, crackers, cookies, and candy.",
         "Variety assortment of brands like Airheads, Cheez It, and Famous Amos.",
@@ -284,6 +286,7 @@ const defaultAdminData: AdminData = {
       reviewCount: 286,
       image: "https://cdn.builder.io/api/v1/image/assets%2F79b7dfd5cb0f4ca0b96e836c27c6ef40%2F5ff73d8278224c2ab0b862f059e3802c?format=webp&width=800",
       walmartLink: "https://www.walmart.com/ip/Gift-a-Snack-52-Count-Snack-Box-with-Variety-Snacks-Chips-Crackers-Cookies-Candy/5915077819?classType=VARIANT&athbdg=L1900",
+      tags: ["Best Value"],
       bulletPoints: [
         "Beautifully branded high-end packaging for an impressive gift.",
         "Convenient individual servings for on-the-go snacking.",
@@ -306,6 +309,7 @@ const defaultAdminData: AdminData = {
       reviewCount: 286,
       image: "https://cdn.builder.io/api/v1/image/assets%2F79b7dfd5cb0f4ca0b96e836c27c6ef40%2F936b74c9566f406ebebd96074d052d09?format=webp&width=800",
       walmartLink: "https://www.walmart.com/ip/Ultimate-Snack-Box-Variety-Pack-105-Count-by-Gift-A-Snack/14496505954?classType=VARIANT",
+      tags: ["Ultimate"],
       bulletPoints: [
         "105-count pack with America's favorite candies, chips, crackers, and bars.",
         "Perfectly packaged in individual servings for on-the-go ease.",
