@@ -65,6 +65,7 @@ export interface AdminData {
     image: string;
     walmartLink: string;
     bulletPoints: string[];
+    tags: string[]; // For badges like "Popular", "Best Value", etc.
   }>;
   testimonials: Array<{
     text: string;
