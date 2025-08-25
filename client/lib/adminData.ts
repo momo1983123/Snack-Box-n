@@ -111,6 +111,7 @@ export interface AdminData {
     buttonLink: string;
     image: string;
     enabled: boolean;
+    productId?: number; // Optional field to link popup to specific product
   }>;
   footer: {
     logo: string;
